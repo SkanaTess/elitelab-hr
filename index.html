@@ -5,6 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elite Lab | Analiza podataka za FMCG brandove</title>
   <meta name="description" content="Pretvaramo vaše prodajne i tržišne podatke u konkretne poslovne odluke. Nielsen, sell-in, Circana, custom dashboardi.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://elitelab.hr/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elitelab.hr/">
+  <meta property="og:title" content="Elite Lab | Analiza podataka za FMCG brandove">
+  <meta property="og:description" content="Pretvaramo Nielsen, sell-in i tržišne podatke u jasne odluke — za FMCG timove kojima treba pravi odgovor, ne još jedna tablica.">
+  <meta property="og:image" content="https://elitelab.hr/slike/work.png">
+  <meta property="og:locale" content="hr_HR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Elite Lab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Elite Lab | FMCG Data Analytics">
+  <meta name="twitter:description" content="Nielsen, sell-in i tržišni podaci prevedeni u konkretne poslovne odluke.">
+  <meta name="twitter:image" content="https://elitelab.hr/slike/work.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230f1e3c'/><text y='68' x='50' text-anchor='middle' font-family='Inter,sans-serif' font-weight='700' font-size='42' fill='%23c9a84c'>EL</text></svg>">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Elite Lab",
+    "description": "FMCG data analytics consulting — Nielsen, sell-in, Circana interpretacija i retail entry strategy",
+    "url": "https://elitelab.hr",
+    "email": "info@elitelab.hr",
+    "areaServed": ["HR", "SI", "BA"],
+    "serviceType": "Data Analytics Consulting",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Zagreb",
+      "addressCountry": "HR"
+    },
+    "knowsAbout": ["Nielsen", "Circana", "FMCG", "Retail Analytics", "Power BI", "Category Management"]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -285,10 +327,26 @@
     .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
 
+    /* HAMBURGER */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.85); border-radius: 2px; transition: all 0.3s; }
+    nav.scrolled .hamburger span { background: var(--navy); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
-      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--white); box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        padding: 8px 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { color: var(--navy) !important; padding: 14px 24px; border-bottom: 1px solid var(--grey); font-size: 1rem; }
       section { padding: 60px 20px; }
       #stats { padding: 40px 20px; }
       .stats-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -315,6 +373,9 @@
       <button class="lang-btn active" onclick="setLang('hr')">HR</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Izbornik">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -455,13 +516,13 @@
     <p class="section-sub" data-i18n="about_sub">FMCG brand ekspertiza + data engineering preciznost — zajedno pretvaramo podatke u odluke.</p>
 
     <div class="team-photo-wrap">
-      <img src="slike/work.png" alt="Elite Lab tim na poslu" class="team-photo">
+      <img src="slike/work.png" alt="Elite Lab tim na poslu" class="team-photo" loading="lazy">
     </div>
 
     <div class="founders-grid">
       <div class="founder-card">
         <div class="founder-photo-wrap">
-          <img src="slike/sasa.jpeg" alt="S.K." class="founder-photo">
+          <img src="slike/sasa.jpeg" alt="S.K." class="founder-photo" loading="lazy">
         </div>
         <div class="founder-role-tag" data-i18n="f1_role_tag">FMCG Brand &amp; Market Analytics</div>
         <div class="founder-name">S.K.</div>
@@ -474,7 +535,7 @@
       </div>
       <div class="founder-card">
         <div class="founder-photo-wrap">
-          <img src="slike/jelic.png" alt="I.J." class="founder-photo">
+          <img src="slike/jelic.png" alt="I.J." class="founder-photo" loading="lazy">
         </div>
         <div class="founder-role-tag" data-i18n="f2_role_tag">Data Engineering &amp; Business Intelligence</div>
         <div class="founder-name">I.J.</div>
@@ -552,9 +613,8 @@
     <h2 class="kontakt-h2" data-i18n="contact_h2">Rezervirajte 30 minuta — bez naknade i obaveza</h2>
     <p class="kontakt-sub" data-i18n="contact_sub">Besplatni discovery poziv. Objasnimo kako možemo pomoći — ili kažemo da ne možemo. U oba slučaja dobivate korisne informacije.</p>
     <div class="calendly-wrap">
-      <!-- ZAMIJENI href s tvojim Calendly linkom: https://calendly.com/TVOJ_USERNAME/30min -->
-      <a href="https://calendly.com/TVOJ_USERNAME/30min" class="btn-calendly" data-i18n="calendly_btn" target="_blank">📅 Zakažite besplatni 30-min poziv →</a>
-      <p class="calendly-note" data-i18n="calendly_note">Slobodni termin potvrđujemo unutar 24 sata.</p>
+      <a href="mailto:info@elitelab.hr?subject=Discovery poziv&body=Pozdrav%2C%0A%0AZanima me besplatni 30-minutni discovery poziv.%0A%0AMoje ime%3A%0ATvrtka%3A%0ANajbolje vrijeme za poziv%3A" class="btn-calendly" data-i18n="calendly_btn" target="_blank">📅 Zakažite besplatni 30-min poziv →</a>
+      <p class="calendly-note" data-i18n="calendly_note">Odgovaramo unutar 24 sata.</p>
     </div>
     <p class="kontakt-email">
       <span data-i18n="or_email">Ili pišite direktno:</span>
@@ -570,8 +630,7 @@
     <a href="#usluge" data-i18n="nav_services">Usluge</a>
     <a href="#onama" data-i18n="nav_about">O nama</a>
     <a href="#kontakt" data-i18n="nav_contact">Kontakt</a>
-    <!-- ZAMIJENI s tvojim LinkedIn profilom: https://www.linkedin.com/in/TVOJE_IME/ -->
-    <a href="https://www.linkedin.com/in/TVOJ_PROFIL/" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/company/elite-lab-analytics" target="_blank">LinkedIn</a>
   </div>
 </footer>
 
@@ -580,6 +639,20 @@
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
   });
 
   // i18n
@@ -654,7 +727,7 @@
       contact_tag: 'Kontakt', contact_h2: 'Rezervirajte 30 minuta — bez naknade i obaveza',
       contact_sub: 'Besplatni discovery poziv. Objasnimo kako možemo pomoći — ili kažemo da ne možemo. U oba slučaja dobivate korisne informacije.',
       calendly_btn: '📅 Zakažite besplatni 30-min poziv →',
-      calendly_note: 'Slobodni termin potvrđujemo unutar 24 sata.',
+      calendly_note: 'Odgovaramo unutar 24 sata.',
       or_email: 'Ili pišite direktno:'
     },
     en: {
@@ -727,7 +800,7 @@
       contact_tag: 'Contact', contact_h2: 'Book 30 minutes — no charge, no commitment',
       contact_sub: 'Free discovery call. We explain how we can help — or say we can\'t. Either way you leave with something useful.',
       calendly_btn: '📅 Book your free 30-min call →',
-      calendly_note: 'We confirm your slot within 24 hours.',
+      calendly_note: 'We respond within 24 hours.',
       or_email: 'Or write directly:'
     }
   };
