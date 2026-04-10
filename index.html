@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Lab | Analiza podataka za FMCG brandove</title>
+  <meta name="description" content="Pretvaramo vaše prodajne i tržišne podatke u konkretne poslovne odluke. Nielsen, sell-in, Circana, custom dashboardi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0f1e3c;
+      --navy-light: #1a2f57;
+      --gold: #c9a84c;
+      --gold-dark: #a8862f;
+      --white: #ffffff;
+      --off-white: #f7f6f3;
+      --grey: #e8e6e1;
+      --text-dark: #1a1a1a;
+      --text-mid: #4a4a4a;
+      --text-light: #6b6b6b;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled { background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    nav.scrolled .nav-logo { color: var(--navy); }
+    nav.scrolled .nav-logo span { color: var(--gold); }
+    nav.scrolled .nav-links a { color: var(--text-dark); }
+    .nav-logo { font-size: 1.25rem; font-weight: 700; color: var(--white); letter-spacing: -0.5px; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .lang-toggle {
+      display: flex; gap: 0;
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; overflow: hidden;
+    }
+    .lang-btn {
+      padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+      background: transparent; color: rgba(255,255,255,0.7); border: none;
+      transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--gold); color: var(--white); }
+    nav.scrolled .lang-toggle { border-color: var(--grey); }
+    nav.scrolled .lang-btn { color: var(--text-mid); }
+    nav.scrolled .lang-btn.active { background: var(--gold); color: var(--white); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #0d2244 60%, #162d4a 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 40px 80px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 20%, rgba(201,168,76,0.05) 0%, transparent 50%);
+    }
+    .hero-inner { position: relative; max-width: 780px; }
+    .hero-badge {
+      display: inline-block; margin-bottom: 24px;
+      padding: 6px 16px; border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 20px; color: var(--gold); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px;
+    }
+    .hero-h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; color: var(--white);
+      line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.5px;
+    }
+    .hero-h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-size: 1.15rem; color: rgba(255,255,255,0.7); max-width: 580px;
+      margin: 0 auto 36px; font-weight: 400;
+    }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary {
+      padding: 14px 28px; background: var(--gold); color: var(--white);
+      border: none; border-radius: 4px; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      padding: 14px 28px; background: transparent; color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;
+      font-size: 0.95rem; font-weight: 500; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-brands {
+      display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+    .hero-brands span { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+    .brand-tag {
+      padding: 5px 14px; border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px; color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 500;
+    }
+
+    /* STATS */
+    #stats { background: var(--off-white); padding: 48px 40px; border-bottom: 1px solid var(--grey); }
+    .stats-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; text-align: center; }
+    .stat-num { font-size: 2.8rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .stat-num span { color: var(--gold); }
+    .stat-label { font-size: 0.9rem; color: var(--text-light); margin-top: 6px; }
+
+    /* SECTION */
+    section { padding: 80px 40px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-tag { font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .section-h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: 16px; }
+    .section-sub { font-size: 1rem; color: var(--text-mid); max-width: 560px; }
+
+    /* PROBLEM */
+    #problem { background: #111827; }
+    #problem .section-h2 { color: var(--white); }
+    #problem .section-tag { color: var(--gold); }
+    #problem .section-sub { color: rgba(255,255,255,0.6); }
+    .problem-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; }
+    .problem-card {
+      padding: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+    }
+    .problem-icon { font-size: 2rem; margin-bottom: 16px; }
+    .problem-card h3 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+    .problem-card p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+    .relief-bridge {
+      margin-top: 48px; padding: 32px; text-align: center;
+      background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px;
+    }
+    .relief-bridge p { font-size: 1.15rem; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 16px; }
+    .relief-bridge a { color: var(--gold); font-size: 0.9rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.4); transition: border-color 0.2s; }
+    .relief-bridge a:hover { border-color: var(--gold); }
+
+    /* USLUGE */
+    #usluge { background: var(--white); }
+    .anchor-note {
+      display: inline-block; margin-bottom: 36px;
+      padding: 10px 20px; background: var(--off-white); border-left: 3px solid var(--gold);
+      font-size: 0.85rem; color: var(--text-mid);
+    }
+    .anchor-note strong { color: var(--navy); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; }
+    .service-card {
+      padding: 32px; border: 1px solid var(--grey); border-radius: 8px;
+      display: flex; flex-direction: column; position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .service-card.featured { border-color: var(--gold); border-width: 2px; }
+    .featured-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--white); font-size: 0.72rem; font-weight: 700;
+      padding: 4px 14px; border-radius: 12px; letter-spacing: 0.5px; white-space: nowrap;
+    }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .service-desc { font-size: 0.88rem; color: var(--text-mid); margin-bottom: 20px; }
+    .service-price { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .service-price-note { font-size: 0.78rem; color: var(--text-light); margin-bottom: 20px; }
+    .service-bullets { list-style: none; margin-bottom: 28px; flex: 1; }
+    .service-bullets li { font-size: 0.88rem; color: var(--text-mid); padding: 6px 0; border-bottom: 1px solid var(--off-white); display: flex; align-items: flex-start; gap: 8px; }
+    .service-bullets li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .btn-service {
+      padding: 12px 20px; border: 1.5px solid var(--navy); border-radius: 4px;
+      color: var(--navy); font-size: 0.88rem; font-weight: 600;
+      background: transparent; cursor: pointer; text-align: center;
+      text-decoration: none; display: block; transition: all 0.2s;
+    }
+    .btn-service:hover { background: var(--navy); color: var(--white); }
+    .btn-service-gold {
+      padding: 12px 20px; background: var(--gold); border: none; border-radius: 4px;
+      color: var(--white); font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; text-align: center; text-decoration: none; display: block; transition: background 0.2s;
+    }
+    .btn-service-gold:hover { background: var(--gold-dark); }
+
+    /* O NAMA */
+    #onama { background: var(--off-white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 40px; }
+    .about-big-num { font-size: 5rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .about-num-label { font-size: 1rem; color: var(--navy); font-weight: 600; margin-bottom: 24px; }
+    .about-text { font-size: 0.95rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 24px; }
+    .scarcity-note {
+      padding: 14px 18px; background: var(--white); border-left: 3px solid var(--gold);
+      font-size: 0.85rem; color: var(--text-mid); font-style: italic;
+    }
+    .brand-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+    .brand-badge {
+      padding: 6px 16px; background: var(--white); border: 1px solid var(--grey);
+      border-radius: 3px; font-size: 0.82rem; font-weight: 600; color: var(--navy);
+    }
+    .credential-list { list-style: none; }
+    .credential-list li { font-size: 0.9rem; color: var(--text-mid); padding: 10px 0; border-bottom: 1px solid var(--grey); display: flex; gap: 10px; }
+    .credential-list li::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    /* TEAM PHOTO */
+    .team-photo-wrap { margin: 40px 0 0; text-align: center; }
+    .team-photo { width: 100%; max-width: 640px; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.12); display: block; margin: 0 auto; }
+
+    /* FOUNDERS GRID */
+    .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 36px; }
+    .founder-card { padding: 28px 32px; background: var(--white); border: 1px solid var(--grey); border-radius: 8px; }
+    .founder-initials {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      font-size: 1rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .founder-photo-wrap { margin-bottom: 14px; }
+    .founder-photo {
+      width: 72px; height: 72px; border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      border: 2px solid var(--grey);
+      display: block;
+    }
+    .founder-role-tag { font-size: 0.75rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+    .founder-name { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+    .founder-bullets { list-style: none; }
+    .founder-bullets li { font-size: 0.87rem; color: var(--text-mid); padding: 7px 0; border-bottom: 1px solid var(--off-white); display: flex; gap: 8px; }
+    .founder-bullets li:last-child { border-bottom: none; }
+    .founder-bullets li::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    /* CALENDLY BUTTON */
+    .calendly-wrap { margin-bottom: 28px; }
+    .btn-calendly {
+      display: inline-block; padding: 18px 40px;
+      background: var(--navy); color: var(--white);
+      font-size: 1rem; font-weight: 600; border-radius: 6px;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+    }
+    .btn-calendly:hover { background: var(--navy-light); transform: translateY(-2px); }
+    .calendly-note { margin-top: 12px; font-size: 0.85rem; color: var(--text-light); }
+
+    /* PROCES */
+    #proces { background: var(--white); }
+    .process-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; margin-top: 48px; text-align: center; }
+    .step-num { font-size: 2.5rem; font-weight: 700; color: var(--grey); line-height: 1; margin-bottom: 12px; }
+    .step-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step-desc { font-size: 0.88rem; color: var(--text-mid); }
+
+    /* TESTIMONIJALI */
+    #testimonijali { background: var(--navy); }
+    #testimonijali .section-h2 { color: var(--white); }
+    #testimonijali .section-tag { color: var(--gold); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; margin-top: 48px; }
+    .testi-card {
+      padding: 28px; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+    }
+    .testi-quote { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testi-quote::before { content: '"'; color: var(--gold); font-size: 2rem; line-height: 0.5; vertical-align: -0.4em; margin-right: 4px; }
+    .testi-author { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+    .testi-role { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    /* KONTAKT */
+    #kontakt { background: var(--off-white); text-align: center; }
+    #kontakt .section-inner { max-width: 640px; }
+    .kontakt-h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.25; }
+    .kontakt-sub { font-size: 1rem; color: var(--text-mid); margin-bottom: 40px; }
+    .calendly-placeholder {
+      background: var(--white); border: 2px dashed var(--grey); border-radius: 8px;
+      padding: 48px; margin-bottom: 28px; font-size: 0.9rem; color: var(--text-light);
+    }
+    .kontakt-email { font-size: 1rem; color: var(--text-mid); }
+    .kontakt-email a { color: var(--navy); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy); padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      #stats { padding: 40px 20px; }
+      .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .founders-grid { grid-template-columns: 1fr; gap: 20px; }
+      .process-steps { grid-template-columns: 1fr; gap: 28px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px 20px; }
+      .hero-h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">Elite<span>Lab</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#usluge" data-i18n="nav_services">Usluge</a></li>
+      <li><a href="#onama" data-i18n="nav_about">O nama</a></li>
+      <li><a href="#kontakt" data-i18n="nav_contact">Kontakt</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('hr')">HR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge" data-i18n="hero_badge">FMCG & Retail Data Analytics</div>
+    <h1 class="hero-h1" data-i18n="hero_h1">Vaši prodajni podaci konačno<br><em>rade za vas</em></h1>
+    <p class="hero-sub" data-i18n="hero_sub">Pretvaramo Nielsen, sell-in i tržišne podatke u jasne odluke — za FMCG timove kojima ne treba stalni analitičar, nego pravi odgovori.</p>
+    <div class="hero-ctas">
+      <a href="#kontakt" class="btn-primary" data-i18n="hero_cta1">Rezervirajte besplatni 30-min poziv →</a>
+      <a href="#usluge" class="btn-secondary" data-i18n="hero_cta2">Pogledajte usluge</a>
+    </div>
+    <div class="hero-brands">
+      <span data-i18n="hero_exp">Iskustvo iz:</span>
+      <span class="brand-tag">Nestlé razina</span>
+      <span class="brand-tag">Henkel razina</span>
+      <span class="brand-tag">HiPP razina</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-num">20<span>+</span></div>
+      <div class="stat-label" data-i18n="stat1">kombiniranih godina iskustva</div>
+    </div>
+    <div>
+      <div class="stat-num">40<span>+</span></div>
+      <div class="stat-label" data-i18n="stat2">analiziranih kategorija</div>
+    </div>
+    <div>
+      <div class="stat-num">6</div>
+      <div class="stat-label" data-i18n="stat3">tržišta — HR, SI, BiH i regija</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="problem_tag">Problem koji rješavamo</div>
+    <h2 class="section-h2" data-i18n="problem_h2">Imate podatke.<br>Ali ne znate što s njima.</h2>
+    <p class="section-sub" data-i18n="problem_sub">Nielsen, sell-in, interni reporting — podaci postoje. Bez pravog oka za interpretaciju, ostaju samo tablice.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <h3 data-i18n="p1_title">Skupo, ali nečitljivo</h3>
+        <p data-i18n="p1_desc">Plaćate €15.000+/god za Nielsen ili Circana, ali izvještaji skupljaju prašinu jer nitko nema vremena ni znanja za pravu interpretaciju.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⏱</div>
+        <h3 data-i18n="p2_title">Pivot tablice jedu tjedne</h3>
+        <p data-i18n="p2_desc">Vaš tim troši sate na obradu sell-in i sell-out podataka umjesto na odluke. A zaključci su uvijek isti generički uvidi koji nikoga ne pomiču.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📉</div>
+        <h3 data-i18n="p3_title">Konkurencija raste, ne znate zašto</h3>
+        <p data-i18n="p3_desc">Tržišni udio ili distribucija stagniraju — bez konteksta iz kategorije ne možete locirati pravi uzrok ni reagirati na vrijeme.</p>
+      </div>
+    </div>
+    <div class="relief-bridge">
+      <p data-i18n="relief_text">Svaki od ovih problema ima rješenje — ako znate gdje gledati. Mi znamo.</p>
+      <a href="#usluge" data-i18n="relief_cta">Pogledajte kako možemo pomoći →</a>
+    </div>
+  </div>
+</section>
+
+<!-- USLUGE -->
+<section id="usluge">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="services_tag">Usluge</div>
+    <h2 class="section-h2" data-i18n="services_h2">Tri razine angažmana</h2>
+    <p class="section-sub" data-i18n="services_sub">Od jednokratne dijagnoze do stalnog analitičkog partnera.</p>
+    <div class="anchor-note" style="margin-top:24px;">
+      <span data-i18n="anchor_note"><strong>Napomena:</strong> Bez obzira imate li Nielsen, interni sell-in reporting ili samo Excel — radimo s onim što imate. Nielsen subscription košta €15.000–50.000/god. Naša usluga košta djelić toga i donosi konkretne odluke.</span>
+    </div>
+    <div class="services-grid">
+
+      <!-- Tier 1 -->
+      <div class="service-card">
+        <h3 data-i18n="s1_title">Category Health Check</h3>
+        <p class="service-desc" data-i18n="s1_desc">Gdje stojite u kategoriji — za 3 radna dana</p>
+        <div class="service-price">od €500</div>
+        <div class="service-price-note" data-i18n="s1_note">jednokratno · PDF izvještaj + prezentacija</div>
+        <ul class="service-bullets">
+          <li data-i18n="s1_b1">Tržišni udio i trend po kanalu</li>
+          <li data-i18n="s1_b2">Distribucijska analiza po formatu</li>
+          <li data-i18n="s1_b3">Pricing positioning vs. konkurencija</li>
+          <li data-i18n="s1_b4">3–5 konkretnih preporuka</li>
+        </ul>
+        <a href="#kontakt" class="btn-service" data-i18n="s1_cta">Zatražite analizu</a>
+      </div>
+
+      <!-- Tier 2 FEATURED -->
+      <div class="service-card featured">
+        <div class="featured-badge" data-i18n="featured_badge">NAJPOPULARNIJE</div>
+        <h3 data-i18n="s2_title">Analiza podataka</h3>
+        <p class="service-desc" data-i18n="s2_desc">Vaši podaci — bilo koji izvor — prevedeni u odluke</p>
+        <div class="service-price">od €400</div>
+        <div class="service-price-note" data-i18n="s2_note">po kvartalu · ili €150/sat ad hoc</div>
+        <ul class="service-bullets">
+          <li data-i18n="s2_b1">Nielsen / Circana interpretacija</li>
+          <li data-i18n="s2_b2">Sell-in / sell-out analiza</li>
+          <li data-i18n="s2_b3">Custom Excel i dashboard uvid</li>
+          <li data-i18n="s2_b4">Prioritizirana lista "što napraviti"</li>
+          <li data-i18n="s2_b5">Dostupnost za follow-up pitanja</li>
+        </ul>
+        <a href="#kontakt" class="btn-service-gold" data-i18n="s2_cta">Dogovorimo suradnju</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="service-card">
+        <h3 data-i18n="s3_title">Retail Entry Strategy</h3>
+        <p class="service-desc" data-i18n="s3_desc">Ulazite u Konzum, Lidl ili dm? Znajte točno što vas čeka.</p>
+        <div class="service-price">od €800</div>
+        <div class="service-price-note" data-i18n="s3_note">jednokratno · uključuje buyer pitch dokument</div>
+        <ul class="service-bullets">
+          <li data-i18n="s3_b1">Analiza kategorije u ciljanom retaileru</li>
+          <li data-i18n="s3_b2">Pricing preporuka za listing</li>
+          <li data-i18n="s3_b3">Distribution strategy po formatu</li>
+          <li data-i18n="s3_b4">Pitch dokument za razgovor s buyerom</li>
+        </ul>
+        <a href="#kontakt" class="btn-service" data-i18n="s3_cta">Razgovarajmo</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- O NAMA -->
+<section id="onama">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="about_tag">O nama</div>
+    <h2 class="section-h2" data-i18n="about_h2">Dva osnivača. Jedna misija.</h2>
+    <p class="section-sub" data-i18n="about_sub">FMCG brand ekspertiza + data engineering preciznost — zajedno pretvaramo podatke u odluke.</p>
+
+    <div class="team-photo-wrap">
+      <img src="slike/work.png" alt="Elite Lab tim na poslu" class="team-photo">
+    </div>
+
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="founder-photo-wrap">
+          <img src="slike/sasa.jpeg" alt="S.K." class="founder-photo">
+        </div>
+        <div class="founder-role-tag" data-i18n="f1_role_tag">FMCG Brand &amp; Market Analytics</div>
+        <div class="founder-name">S.K.</div>
+        <ul class="founder-bullets">
+          <li data-i18n="f1_b1">10+ godina Brand Management u vodećim FMCG kompanijama</li>
+          <li data-i18n="f1_b2">Nielsen · Circana analiza na razini SKU-a — svakodnevno, ne teorijski</li>
+          <li data-i18n="f1_b3">Sell-in / sell-out, retail listing, pregovori s category buyerima</li>
+          <li data-i18n="f1_b4">Adriatik + regionalna tržišta: HR, SI, BiH i šira regija</li>
+        </ul>
+      </div>
+      <div class="founder-card">
+        <div class="founder-photo-wrap">
+          <img src="slike/jelic.png" alt="I.J." class="founder-photo">
+        </div>
+        <div class="founder-role-tag" data-i18n="f2_role_tag">Data Engineering &amp; Business Intelligence</div>
+        <div class="founder-name">I.J.</div>
+        <ul class="founder-bullets">
+          <li data-i18n="f2_b1">10+ godina obrade i modeliranja poslovnih podataka</li>
+          <li data-i18n="f2_b2">SQL · Power BI · ETL pipeline automatizacija</li>
+          <li data-i18n="f2_b3">Dashboard development i vizualizacija za poslovne odluke</li>
+          <li data-i18n="f2_b4">Transformacija kompleksnih data seta u razumljive insights</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="work-photo-wrap" style="margin-top:32px; text-align:center;">
+      <img src="slike/work_2.png" alt="Elite Lab radni kontekst" style="width:100%; max-width:800px; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.08); display:block; margin:0 auto;">
+    </div>
+
+    <div class="scarcity-note" style="margin-top:32px;" data-i18n="scarcity">Prihvaćamo ograničen broj novih klijenata kvartalno. Ako vas zanima suradnja, javite se na vrijeme.</div>
+  </div>
+</section>
+
+<!-- PROCES -->
+<section id="proces">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="process_tag">Kako radimo</div>
+    <h2 class="section-h2" data-i18n="process_h2">Tri koraka do odluke</h2>
+    <div class="process-steps">
+      <div>
+        <div class="step-num">01</div>
+        <div class="step-title" data-i18n="step1_title">Discovery poziv</div>
+        <div class="step-desc" data-i18n="step1_desc">30 minuta, bez naknade. Razumijemo vaš kontekst, kategoriju i što vas zaista boli. Ako ne možemo pomoći — reći ćemo direktno.</div>
+      </div>
+      <div>
+        <div class="step-num">02</div>
+        <div class="step-title" data-i18n="step2_title">Analiza</div>
+        <div class="step-desc" data-i18n="step2_desc">Radimo s podacima koje imate — Nielsen, Circana, sell-in, vlastiti Excel. Rok: 3–7 radnih dana ovisno o složenosti.</div>
+      </div>
+      <div>
+        <div class="step-num">03</div>
+        <div class="step-title" data-i18n="step3_title">Dostava + Q&amp;A</div>
+        <div class="step-desc" data-i18n="step3_desc">PDF izvještaj + prezentacijski poziv. Konkretne akcije, prioritizirane. Uključuje 2 tjedna follow-up podrške.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIJALI -->
+<section id="testimonijali">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="testi_tag">Iskustva klijenata</div>
+    <h2 class="section-h2" data-i18n="testi_h2">Što kažu oni koji su radili s nama</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote" data-i18n="t1_quote">Godinama smo imali Nielsen ali nitko nije znao što iz toga izvući. Za tri dana smo s Elite Lab timom dobili više uvida nego za tri kvartala samostalnog rada.</p>
+        <div class="testi-author" data-i18n="t1_author">Marko P.</div>
+        <div class="testi-role" data-i18n="t1_role">Brand Manager, prehrambeni brand, Zagreb</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote" data-i18n="t2_quote">Ulazili smo u Konzum bez pojma gdje stojimo u kategoriji. Elite Lab tim nam je za tjedan dana dao kompletnu sliku i što tražiti od buyera. Listing smo dobili.</p>
+        <div class="testi-author" data-i18n="t2_author">Ana V.</div>
+        <div class="testi-role" data-i18n="t2_role">Direktorica marketinga, domaći FMCG brand</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote" data-i18n="t3_quote">Mislio sam da nam treba junior analitičar na puno radno. Umjesto toga radimo kvartalno s Elite Lab timom — manje košta, a dobivamo ono što nam treba: odluke, ne tablice.</p>
+        <div class="testi-author" data-i18n="t3_author">Ivan K.</div>
+        <div class="testi-role" data-i18n="t3_role">Vlasnik, distribucijska tvrtka, Rijeka</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="contact_tag">Kontakt</div>
+    <h2 class="kontakt-h2" data-i18n="contact_h2">Rezervirajte 30 minuta — bez naknade i obaveza</h2>
+    <p class="kontakt-sub" data-i18n="contact_sub">Besplatni discovery poziv. Objasnimo kako možemo pomoći — ili kažemo da ne možemo. U oba slučaja dobivate korisne informacije.</p>
+    <div class="calendly-wrap">
+      <!-- ZAMIJENI href s tvojim Calendly linkom: https://calendly.com/TVOJ_USERNAME/30min -->
+      <a href="https://calendly.com/TVOJ_USERNAME/30min" class="btn-calendly" data-i18n="calendly_btn" target="_blank">📅 Zakažite besplatni 30-min poziv →</a>
+      <p class="calendly-note" data-i18n="calendly_note">Slobodni termin potvrđujemo unutar 24 sata.</p>
+    </div>
+    <p class="kontakt-email">
+      <span data-i18n="or_email">Ili pišite direktno:</span>
+      <a href="mailto:Skanazir@yahoo.com">Skanazir@yahoo.com</a>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 Elite Lab · Data &amp; Analytics Consulting · Zagreb</div>
+  <div class="footer-links">
+    <a href="#usluge" data-i18n="nav_services">Usluge</a>
+    <a href="#onama" data-i18n="nav_about">O nama</a>
+    <a href="#kontakt" data-i18n="nav_contact">Kontakt</a>
+    <!-- ZAMIJENI s tvojim LinkedIn profilom: https://www.linkedin.com/in/TVOJE_IME/ -->
+    <a href="https://www.linkedin.com/in/TVOJ_PROFIL/" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  // NAV SCROLL
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // i18n
+  const LANG = {
+    hr: {
+      nav_services: 'Usluge', nav_about: 'O nama', nav_contact: 'Kontakt',
+      hero_badge: 'FMCG & Retail Data Analytics',
+      hero_h1: 'Vaši prodajni podaci konačno<br><em>rade za vas</em>',
+      hero_sub: 'Pretvaramo Nielsen, sell-in i tržišne podatke u jasne odluke — za FMCG timove kojima ne treba stalni analitičar, nego pravi odgovori.',
+      hero_cta1: 'Rezervirajte besplatni 30-min poziv →', hero_cta2: 'Pogledajte usluge',
+      hero_exp: 'Iskustvo iz:',
+      stat1: 'kombiniranih godina iskustva', stat2: 'analiziranih kategorija', stat3: 'tržišta — HR, SI, BiH i regija',
+      problem_tag: 'Problem koji rješavamo',
+      problem_h2: 'Imate podatke.<br>Ali ne znate što s njima.',
+      problem_sub: 'Nielsen, sell-in, interni reporting — podaci postoje. Bez pravog oka za interpretaciju, ostaju samo tablice.',
+      p1_title: 'Skupo, ali nečitljivo',
+      p1_desc: 'Plaćate €15.000+/god za Nielsen ili Circana, ali izvještaji skupljaju prašinu jer nitko nema vremena ni znanja za pravu interpretaciju.',
+      p2_title: 'Pivot tablice jedu tjedne',
+      p2_desc: 'Vaš tim troši sate na obradu sell-in i sell-out podataka umjesto na odluke. A zaključci su uvijek isti generički uvidi koji nikoga ne pomiču.',
+      p3_title: 'Konkurencija raste, ne znate zašto',
+      p3_desc: 'Tržišni udio ili distribucija stagniraju — bez konteksta iz kategorije ne možete locirati pravi uzrok ni reagirati na vrijeme.',
+      relief_text: 'Svaki od ovih problema ima rješenje — ako znate gdje gledati. Mi znamo.',
+      relief_cta: 'Pogledajte kako možemo pomoći →',
+      services_tag: 'Usluge', services_h2: 'Tri razine angažmana',
+      services_sub: 'Od jednokratne dijagnoze do stalnog analitičkog partnera.',
+      anchor_note: '<strong>Napomena:</strong> Bez obzira imate li Nielsen, interni sell-in reporting ili samo Excel — radimo s onim što imate. Nielsen subscription košta €15.000–50.000/god. Naša usluga košta djelić toga i donosi konkretne odluke.',
+      s1_title: 'Category Health Check', s1_desc: 'Gdje stojite u kategoriji — za 3 radna dana',
+      s1_note: 'jednokratno · PDF izvještaj + prezentacija',
+      s1_b1: 'Tržišni udio i trend po kanalu', s1_b2: 'Distribucijska analiza po formatu',
+      s1_b3: 'Pricing positioning vs. konkurencija', s1_b4: '3–5 konkretnih preporuka',
+      s1_cta: 'Zatražite analizu',
+      featured_badge: 'NAJPOPULARNIJE',
+      s2_title: 'Analiza podataka', s2_desc: 'Vaši podaci — bilo koji izvor — prevedeni u odluke',
+      s2_note: 'po kvartalu · ili €150/sat ad hoc',
+      s2_b1: 'Nielsen / Circana interpretacija', s2_b2: 'Sell-in / sell-out analiza',
+      s2_b3: 'Custom Excel i dashboard uvid', s2_b4: 'Prioritizirana lista "što napraviti"',
+      s2_b5: 'Dostupnost za follow-up pitanja',
+      s2_cta: 'Dogovorimo suradnju',
+      s3_title: 'Retail Entry Strategy', s3_desc: 'Ulazite u Konzum, Lidl ili dm? Znajte točno što vas čeka.',
+      s3_note: 'jednokratno · uključuje buyer pitch dokument',
+      s3_b1: 'Analiza kategorije u ciljanom retaileru', s3_b2: 'Pricing preporuka za listing',
+      s3_b3: 'Distribution strategy po formatu', s3_b4: 'Pitch dokument za razgovor s buyerom',
+      s3_cta: 'Razgovarajmo',
+      about_tag: 'O nama',
+      about_h2: 'Dva osnivača. Jedna misija.',
+      about_sub: 'FMCG brand ekspertiza + data engineering preciznost — zajedno pretvaramo podatke u odluke.',
+      f1_role_tag: 'FMCG Brand & Market Analytics',
+      f1_b1: '10+ godina Brand Management u vodećim FMCG kompanijama',
+      f1_b2: 'Nielsen · Circana analiza na razini SKU-a — svakodnevno, ne teorijski',
+      f1_b3: 'Sell-in / sell-out, retail listing, pregovori s category buyerima',
+      f1_b4: 'Adriatik + regionalna tržišta: HR, SI, BiH i šira regija',
+      f2_role_tag: 'Data Engineering & Business Intelligence',
+      f2_b1: '10+ godina obrade i modeliranja poslovnih podataka',
+      f2_b2: 'SQL · Power BI · ETL pipeline automatizacija',
+      f2_b3: 'Dashboard development i vizualizacija za poslovne odluke',
+      f2_b4: 'Transformacija kompleksnih data seta u razumljive insights',
+      scarcity: 'Prihvaćamo ograničen broj novih klijenata kvartalno. Ako vas zanima suradnja, javite se na vrijeme.',
+      process_tag: 'Kako radimo', process_h2: 'Tri koraka do odluke',
+      step1_title: 'Discovery poziv',
+      step1_desc: '30 minuta, bez naknade. Razumijemo vaš kontekst, kategoriju i što vas zaista boli. Ako ne možemo pomoći — reći ćemo direktno.',
+      step2_title: 'Analiza',
+      step2_desc: 'Radimo s podacima koje imate — Nielsen, Circana, sell-in, vlastiti Excel. Rok: 3–7 radnih dana ovisno o složenosti.',
+      step3_title: 'Dostava + Q&A',
+      step3_desc: 'PDF izvještaj + prezentacijski poziv. Konkretne akcije, prioritizirane. Uključuje 2 tjedna follow-up podrške.',
+      testi_tag: 'Iskustva klijenata', testi_h2: 'Što kažu oni koji su radili s nama',
+      t1_quote: 'Godinama smo imali Nielsen ali nitko nije znao što iz toga izvući. Za tri dana smo s Elite Lab timom dobili više uvida nego za tri kvartala samostalnog rada.',
+      t1_author: 'Marko P.', t1_role: 'Brand Manager, prehrambeni brand, Zagreb',
+      t2_quote: 'Ulazili smo u Konzum bez pojma gdje stojimo u kategoriji. Elite Lab tim nam je za tjedan dana dao kompletnu sliku i što tražiti od buyera. Listing smo dobili.',
+      t2_author: 'Ana V.', t2_role: 'Direktorica marketinga, domaći FMCG brand',
+      t3_quote: 'Mislio sam da nam treba junior analitičar na puno radno. Umjesto toga radimo kvartalno s Elite Lab timom — manje košta, a dobivamo ono što nam treba: odluke, ne tablice.',
+      t3_author: 'Ivan K.', t3_role: 'Vlasnik, distribucijska tvrtka, Rijeka',
+      contact_tag: 'Kontakt', contact_h2: 'Rezervirajte 30 minuta — bez naknade i obaveza',
+      contact_sub: 'Besplatni discovery poziv. Objasnimo kako možemo pomoći — ili kažemo da ne možemo. U oba slučaja dobivate korisne informacije.',
+      calendly_btn: '📅 Zakažite besplatni 30-min poziv →',
+      calendly_note: 'Slobodni termin potvrđujemo unutar 24 sata.',
+      or_email: 'Ili pišite direktno:'
+    },
+    en: {
+      nav_services: 'Services', nav_about: 'About', nav_contact: 'Contact',
+      hero_badge: 'FMCG & Retail Data Analytics',
+      hero_h1: 'Your sales data.<br><em>Finally working for you.</em>',
+      hero_sub: 'We turn Nielsen, sell-in and market data into clear decisions — for FMCG teams who don\'t need a full-time analyst, just the right answers.',
+      hero_cta1: 'Book a free 30-min call →', hero_cta2: 'View services',
+      hero_exp: 'Experience from:',
+      stat1: 'combined years of expertise', stat2: 'categories analysed', stat3: 'markets — HR, SI, BiH & region',
+      problem_tag: 'The problem we solve',
+      problem_h2: 'You have the data.<br>But not the clarity.',
+      problem_sub: 'Nielsen, sell-in, internal reporting — the data exists. Without the right expertise for interpretation, it stays just tables.',
+      p1_title: 'Expensive, but unreadable',
+      p1_desc: 'You\'re paying €15,000+/year for Nielsen or Circana, but reports sit unread because no one has the time — or the expertise — for real interpretation.',
+      p2_title: 'Pivot tables eat your weeks',
+      p2_desc: 'Your team spends hours processing sell-in and sell-out data instead of making decisions. The conclusions are always the same generic insights that move no one.',
+      p3_title: 'Competition grows. You don\'t know why.',
+      p3_desc: 'Market share or distribution stagnates — without category context you can\'t locate the real cause or react in time.',
+      relief_text: 'Every one of these problems has a solution — if you know where to look. We do.',
+      relief_cta: 'See how we can help →',
+      services_tag: 'Services', services_h2: 'Three levels of engagement',
+      services_sub: 'From a one-time diagnostic to an ongoing analytics partner.',
+      anchor_note: '<strong>Note:</strong> Whether you have Nielsen, internal sell-in reporting or just Excel — we work with what you have. A Nielsen subscription costs €15,000–50,000/year. Our service costs a fraction of that and delivers concrete decisions.',
+      s1_title: 'Category Health Check', s1_desc: 'Where you stand in your category — in 3 business days',
+      s1_note: 'one-time · PDF report + presentation',
+      s1_b1: 'Market share & trend by channel', s1_b2: 'Distribution analysis by format',
+      s1_b3: 'Pricing positioning vs. competition', s1_b4: '3–5 concrete recommendations',
+      s1_cta: 'Request analysis',
+      featured_badge: 'MOST POPULAR',
+      s2_title: 'Data Analytics', s2_desc: 'Your data — any source — translated into decisions',
+      s2_note: 'per quarter · or €150/hour ad hoc',
+      s2_b1: 'Nielsen / Circana interpretation', s2_b2: 'Sell-in / sell-out analysis',
+      s2_b3: 'Custom Excel & dashboard insight', s2_b4: 'Prioritised "what to do next" list',
+      s2_b5: 'Available for follow-up questions',
+      s2_cta: 'Let\'s work together',
+      s3_title: 'Retail Entry Strategy', s3_desc: 'Entering Konzum, Lidl or dm? Know exactly what to expect.',
+      s3_note: 'one-time · includes buyer pitch document',
+      s3_b1: 'Category analysis in target retailer', s3_b2: 'Pricing recommendation for listing',
+      s3_b3: 'Distribution strategy by format', s3_b4: 'Pitch document for buyer meeting',
+      s3_cta: 'Let\'s talk',
+      about_tag: 'About us',
+      about_h2: 'Two founders. One mission.',
+      about_sub: 'FMCG brand expertise + data engineering precision — together we turn data into decisions.',
+      f1_role_tag: 'FMCG Brand & Market Analytics',
+      f1_b1: '10+ years Brand Management at leading FMCG companies',
+      f1_b2: 'Nielsen · Circana analysis at SKU level — daily, not theoretical',
+      f1_b3: 'Sell-in / sell-out, retail listing, category buyer negotiations',
+      f1_b4: 'Adriatic + regional markets: HR, SI, BiH and wider region',
+      f2_role_tag: 'Data Engineering & Business Intelligence',
+      f2_b1: '10+ years of business data processing and modelling',
+      f2_b2: 'SQL · Power BI · ETL pipeline automation',
+      f2_b3: 'Dashboard development and visualisation for business decisions',
+      f2_b4: 'Transforming complex data sets into understandable insights',
+      scarcity: 'We work with a limited number of new clients per quarter. If you\'re interested, reach out early.',
+      process_tag: 'How we work', process_h2: 'Three steps to a decision',
+      step1_title: 'Discovery call',
+      step1_desc: '30 minutes, no charge. We understand your context, category and what really hurts. If we can\'t help — we\'ll say so directly.',
+      step2_title: 'Analysis',
+      step2_desc: 'We work with the data you have — Nielsen, Circana, sell-in, your own Excel. Timeline: 3–7 business days depending on complexity.',
+      step3_title: 'Delivery + Q&A',
+      step3_desc: 'PDF report + presentation call. Concrete actions, prioritised. Includes 2 weeks of follow-up support.',
+      testi_tag: 'Client testimonials', testi_h2: 'What clients say about working with us',
+      t1_quote: 'We had Nielsen for years but nobody knew what to do with it. In three days with the Elite Lab team we got more insight than in three quarters of working on it ourselves.',
+      t1_author: 'Marko P.', t1_role: 'Brand Manager, food brand, Zagreb',
+      t2_quote: 'We were entering Konzum without any idea where we stood in the category. Elite Lab gave us a complete picture and what to ask for in a week. We got the listing.',
+      t2_author: 'Ana V.', t2_role: 'Marketing Director, Croatian FMCG brand',
+      t3_quote: 'I thought I needed a full-time junior analyst. Instead we work with the Elite Lab team quarterly — it costs less and we get exactly what we need: decisions, not tables.',
+      t3_author: 'Ivan K.', t3_role: 'Owner, distribution company, Rijeka',
+      contact_tag: 'Contact', contact_h2: 'Book 30 minutes — no charge, no commitment',
+      contact_sub: 'Free discovery call. We explain how we can help — or say we can\'t. Either way you leave with something useful.',
+      calendly_btn: '📅 Book your free 30-min call →',
+      calendly_note: 'We confirm your slot within 24 hours.',
+      or_email: 'Or write directly:'
+    }
+  };
+
+  let currentLang = 'hr';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (LANG[lang][key] !== undefined) {
+        el.innerHTML = LANG[lang][key];
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
+</body>
+</html>
