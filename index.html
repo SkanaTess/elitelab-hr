@@ -622,12 +622,12 @@
     <h2 class="kontakt-h2" data-i18n="contact_h2">Rezervirajte 30 minuta — bez naknade i obaveza</h2>
     <p class="kontakt-sub" data-i18n="contact_sub">Besplatni discovery poziv. Objasnimo kako možemo pomoći — ili kažemo da ne možemo. U oba slučaja dobivate korisne informacije.</p>
     <div class="calendly-wrap">
-      <a href="mailto:info@elitelab.hr?subject=Discovery poziv&body=Pozdrav%2C%0A%0AZanima me besplatni 30-minutni discovery poziv.%0A%0AMoje ime%3A%0ATvrtka%3A%0ANajbolje vrijeme za poziv%3A" class="btn-calendly" data-i18n="calendly_btn" target="_blank">📅 Zakažite besplatni 30-min poziv →</a>
+      <a href="mailto:info@elitelab.hr?subject=Discovery poziv&body=Pozdrav%2C%0A%0AZanima me besplatni 30-minutni discovery poziv.%0A%0AMoje ime%3A%0ATvrtka%3A%0ANajbolje vrijeme za poziv%3A" class="btn-calendly" data-i18n="calendly_btn" target="_blank" onclick="gtag('event','generate_lead',{event_category:'CTA',event_label:'booking_btn'})">📅 Zakažite besplatni 30-min poziv →</a>
       <p class="calendly-note" data-i18n="calendly_note">Odgovaramo unutar 24 sata.</p>
     </div>
     <p class="kontakt-email">
       <span data-i18n="or_email">Ili pišite direktno:</span>
-      <a href="mailto:info@elitelab.hr">info@elitelab.hr</a>
+      <a href="mailto:info@elitelab.hr" onclick="gtag('event','generate_lead',{event_category:'CTA',event_label:'email_link'})">info@elitelab.hr</a>
     </p>
   </div>
 </section>
