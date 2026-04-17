@@ -397,7 +397,7 @@
     <h1 class="hero-h1" data-i18n="hero_h1">Vaši prodajni podaci konačno<br><em>rade za vas</em></h1>
     <p class="hero-sub" data-i18n="hero_sub">Pretvaramo Nielsen, sell-in i tržišne podatke u jasne odluke — za FMCG timove kojima ne treba stalni analitičar, nego pravi odgovori.</p>
     <div class="hero-ctas">
-      <a href="#kontakt" class="btn-primary" data-i18n="hero_cta1">Rezervirajte besplatni 30-min poziv →</a>
+      <a href="#kontakt" class="btn-primary" data-i18n="hero_cta1" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'hero_cta',transport_type:'beacon'})">Rezervirajte besplatni 30-min poziv →</a>
       <a href="#usluge" class="btn-secondary" data-i18n="hero_cta2">Pogledajte usluge</a>
     </div>
     <div class="hero-brands">
@@ -474,13 +474,14 @@
         <p class="service-desc" data-i18n="s1_desc">Gdje stojite u kategoriji — za 3 radna dana</p>
         <div class="service-price">od €500</div>
         <div class="service-price-note" data-i18n="s1_note">jednokratno · PDF izvještaj + prezentacija</div>
+        <div style="font-size:0.78rem;color:var(--gold);margin-top:4px;font-weight:600;" data-i18n="s1_anchor">vs. €15.000+/god za Nielsen — za djelić toga</div>
         <ul class="service-bullets">
           <li data-i18n="s1_b1">Tržišni udio i trend po kanalu</li>
           <li data-i18n="s1_b2">Distribucijska analiza po formatu</li>
           <li data-i18n="s1_b3">Pricing positioning vs. konkurencija</li>
           <li data-i18n="s1_b4">3–5 konkretnih preporuka</li>
         </ul>
-        <a href="#kontakt" class="btn-service" data-i18n="s1_cta" onclick="gtag('event','generate_lead',{event_category:'CTA',event_label:'s1_zdravlje',transport_type:'beacon'})">Zatražite analizu</a>
+        <a href="#kontakt" class="btn-service" data-i18n="s1_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'s1_zdravlje',transport_type:'beacon'})">Zatražite analizu</a>
       </div>
 
       <!-- Tier 2 FEATURED -->
@@ -490,6 +491,7 @@
         <p class="service-desc" data-i18n="s2_desc">Vaši podaci — bilo koji izvor — prevedeni u odluke</p>
         <div class="service-price">od €400</div>
         <div class="service-price-note" data-i18n="s2_note">po kvartalu · ili €150/sat ad hoc</div>
+        <div style="font-size:0.78rem;color:var(--gold);margin-top:4px;font-weight:600;" data-i18n="s2_anchor">= €133/mj · manje od jednog juniorskog radnog dana</div>
         <ul class="service-bullets">
           <li data-i18n="s2_b1">Nielsen / Circana interpretacija</li>
           <li data-i18n="s2_b2">Sell-in / sell-out analiza</li>
@@ -497,7 +499,7 @@
           <li data-i18n="s2_b4">Prioritizirana lista "što napraviti"</li>
           <li data-i18n="s2_b5">Dostupnost za follow-up pitanja</li>
         </ul>
-        <a href="#kontakt" class="btn-service-gold" data-i18n="s2_cta" onclick="gtag('event','generate_lead',{event_category:'CTA',event_label:'s2_analiza',transport_type:'beacon'})">Dogovorimo suradnju</a>
+        <a href="#kontakt" class="btn-service-gold" data-i18n="s2_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'s2_analiza',transport_type:'beacon'})">Dogovorimo suradnju</a>
       </div>
 
       <!-- Tier 3 -->
@@ -506,13 +508,14 @@
         <p class="service-desc" data-i18n="s3_desc">Ulazite u Konzum, Lidl ili dm? Znajte točno što vas čeka.</p>
         <div class="service-price">od €800</div>
         <div class="service-price-note" data-i18n="s3_note">jednokratno · uključuje buyer pitch dokument</div>
+        <div style="font-size:0.78rem;color:var(--gold);margin-top:4px;font-weight:600;" data-i18n="s3_anchor">Jedan listing u Konzumu = višestruki povrat investicije</div>
         <ul class="service-bullets">
           <li data-i18n="s3_b1">Analiza kategorije u ciljanom retaileru</li>
           <li data-i18n="s3_b2">Pricing preporuka za listing</li>
           <li data-i18n="s3_b3">Distribution strategy po formatu</li>
           <li data-i18n="s3_b4">Pitch dokument za razgovor s buyerom</li>
         </ul>
-        <a href="#kontakt" class="btn-service" data-i18n="s3_cta" onclick="gtag('event','generate_lead',{event_category:'CTA',event_label:'s3_retail',transport_type:'beacon'})">Razgovarajmo</a>
+        <a href="#kontakt" class="btn-service" data-i18n="s3_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'s3_retail',transport_type:'beacon'})">Razgovarajmo</a>
       </div>
 
     </div>
@@ -536,7 +539,7 @@
           <img src="slike/sasa.jpeg" alt="S.K." class="founder-photo" loading="lazy">
         </div>
         <div class="founder-role-tag" data-i18n="f1_role_tag">FMCG Brand &amp; Market Analytics</div>
-        <div class="founder-name">S.K.</div>
+        <div class="founder-name"><a href="https://www.linkedin.com/in/sasa-kanazir/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Saša Kanazir ↗</a></div>
         <ul class="founder-bullets">
           <li data-i18n="f1_b1">10+ godina Brand Management u vodećim FMCG kompanijama</li>
           <li data-i18n="f1_b2">Nielsen · Circana analiza na razini SKU-a — svakodnevno, ne teorijski</li>
@@ -624,7 +627,8 @@
     <h2 class="kontakt-h2" data-i18n="contact_h2">Rezervirajte 30 minuta — bez naknade i obaveza</h2>
     <p class="kontakt-sub" data-i18n="contact_sub">Besplatni discovery poziv. Objasnimo kako možemo pomoći — ili kažemo da ne možemo. U oba slučaja dobivate korisne informacije.</p>
     <div class="calendly-wrap">
-      <button class="btn-calendly" data-i18n="calendly_btn" onclick="Cal.ns['discovery-poziv']('ui',{styles:{branding:{brandColor:'#c9a84c'}}});Cal.ns['discovery-poziv']('modal',{calLink:'sasa-kanazir/discovery-poziv',config:{layout:'month_view'}});gtag('event','generate_lead',{event_category:'CTA',event_label:'booking_btn',transport_type:'beacon'})">📅 Zakažite besplatni 30-min poziv →</button>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;" data-i18n="booking_qualifier">Za FMCG brandove, distributere i retail tvrtke — HR, SI, BiH i šira regija</p>
+      <button class="btn-calendly" data-i18n="calendly_btn" onclick="Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'booking_btn',transport_type:'beacon'})">📅 Zakažite besplatni 30-min poziv →</button>
       <p class="calendly-note" data-i18n="calendly_note">Besplatno · 30 minuta · bez obaveza</p>
     </div>
     <p class="kontakt-email">
@@ -694,6 +698,7 @@
       s1_note: 'jednokratno · PDF izvještaj + prezentacija',
       s1_b1: 'Tržišni udio i trend po kanalu', s1_b2: 'Distribucijska analiza po formatu',
       s1_b3: 'Pricing positioning vs. konkurencija', s1_b4: '3–5 konkretnih preporuka',
+      s1_anchor: 'vs. €15.000+/god za Nielsen — za djelić toga',
       s1_cta: 'Zatražite analizu',
       featured_badge: 'NAJPOPULARNIJE',
       s2_title: 'Analiza podataka', s2_desc: 'Vaši podaci — bilo koji izvor — prevedeni u odluke',
@@ -701,12 +706,15 @@
       s2_b1: 'Nielsen / Circana interpretacija', s2_b2: 'Sell-in / sell-out analiza',
       s2_b3: 'Custom Excel i dashboard uvid', s2_b4: 'Prioritizirana lista "što napraviti"',
       s2_b5: 'Dostupnost za follow-up pitanja',
+      s2_anchor: '= €133/mj · manje od jednog juniorskog radnog dana',
       s2_cta: 'Dogovorimo suradnju',
       s3_title: 'Retail Entry Strategy', s3_desc: 'Ulazite u Konzum, Lidl ili dm? Znajte točno što vas čeka.',
       s3_note: 'jednokratno · uključuje buyer pitch dokument',
+      s3_anchor: 'Jedan listing u Konzumu = višestruki povrat investicije',
       s3_b1: 'Analiza kategorije u ciljanom retaileru', s3_b2: 'Pricing preporuka za listing',
       s3_b3: 'Distribution strategy po formatu', s3_b4: 'Pitch dokument za razgovor s buyerom',
       s3_cta: 'Razgovarajmo',
+      booking_qualifier: 'Za FMCG brandove, distributere i retail tvrtke — HR, SI, BiH i šira regija',
       about_tag: 'O nama',
       about_h2: 'Dva osnivača. Jedna misija.',
       about_sub: 'FMCG brand ekspertiza + data engineering preciznost — zajedno pretvaramo podatke u odluke.',
@@ -767,6 +775,7 @@
       s1_note: 'one-time · PDF report + presentation',
       s1_b1: 'Market share & trend by channel', s1_b2: 'Distribution analysis by format',
       s1_b3: 'Pricing positioning vs. competition', s1_b4: '3–5 concrete recommendations',
+      s1_anchor: 'vs. €15,000+/year for Nielsen — at a fraction of the cost',
       s1_cta: 'Request analysis',
       featured_badge: 'MOST POPULAR',
       s2_title: 'Data Analytics', s2_desc: 'Your data — any source — translated into decisions',
@@ -774,12 +783,15 @@
       s2_b1: 'Nielsen / Circana interpretation', s2_b2: 'Sell-in / sell-out analysis',
       s2_b3: 'Custom Excel & dashboard insight', s2_b4: 'Prioritised "what to do next" list',
       s2_b5: 'Available for follow-up questions',
+      s2_anchor: '= €133/month · less than one junior working day',
       s2_cta: 'Let\'s work together',
       s3_title: 'Retail Entry Strategy', s3_desc: 'Entering Konzum, Lidl or dm? Know exactly what to expect.',
       s3_note: 'one-time · includes buyer pitch document',
+      s3_anchor: 'One Konzum listing = multiple times the investment back',
       s3_b1: 'Category analysis in target retailer', s3_b2: 'Pricing recommendation for listing',
       s3_b3: 'Distribution strategy by format', s3_b4: 'Pitch document for buyer meeting',
       s3_cta: 'Let\'s talk',
+      booking_qualifier: 'For FMCG brands, distributors and retail companies — HR, SI, BiH and wider region',
       about_tag: 'About us',
       about_h2: 'Two founders. One mission.',
       about_sub: 'FMCG brand expertise + data engineering precision — together we turn data into decisions.',
