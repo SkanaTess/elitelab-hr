@@ -397,7 +397,7 @@
     <h1 class="hero-h1" data-i18n="hero_h1">Vaši prodajni podaci konačno<br><em>rade za vas</em></h1>
     <p class="hero-sub" data-i18n="hero_sub">Pretvaramo Nielsen, sell-in i tržišne podatke u jasne odluke — za FMCG timove kojima ne treba stalni analitičar, nego pravi odgovori.</p>
     <div class="hero-ctas">
-      <a href="#kontakt" class="btn-primary" data-i18n="hero_cta1" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'hero_cta',transport_type:'beacon'})">Rezervirajte besplatni 30-min poziv →</a>
+      <a href="#kontakt" class="btn-primary" data-i18n="hero_cta1" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','click_cta',{event_category:'CTA',event_label:'hero_cta'})">Rezervirajte besplatni 30-min poziv →</a>
       <a href="#usluge" class="btn-secondary" data-i18n="hero_cta2">Pogledajte usluge</a>
     </div>
     <div class="hero-brands">
@@ -481,7 +481,7 @@
           <li data-i18n="s1_b3">Pricing positioning vs. konkurencija</li>
           <li data-i18n="s1_b4">3–5 konkretnih preporuka</li>
         </ul>
-        <a href="#kontakt" class="btn-service" data-i18n="s1_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'s1_zdravlje',transport_type:'beacon'})">Zatražite analizu</a>
+        <a href="#kontakt" class="btn-service" data-i18n="s1_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','click_cta',{event_category:'CTA',event_label:'s1_zdravlje'})">Zatražite analizu</a>
       </div>
 
       <!-- Tier 2 FEATURED -->
@@ -499,7 +499,7 @@
           <li data-i18n="s2_b4">Prioritizirana lista "što napraviti"</li>
           <li data-i18n="s2_b5">Dostupnost za follow-up pitanja</li>
         </ul>
-        <a href="#kontakt" class="btn-service-gold" data-i18n="s2_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'s2_analiza',transport_type:'beacon'})">Dogovorimo suradnju</a>
+        <a href="#kontakt" class="btn-service-gold" data-i18n="s2_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','click_cta',{event_category:'CTA',event_label:'s2_analiza'})">Dogovorimo suradnju</a>
       </div>
 
       <!-- Tier 3 -->
@@ -515,7 +515,7 @@
           <li data-i18n="s3_b3">Distribution strategy po formatu</li>
           <li data-i18n="s3_b4">Pitch dokument za razgovor s buyerom</li>
         </ul>
-        <a href="#kontakt" class="btn-service" data-i18n="s3_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'s3_retail',transport_type:'beacon'})">Razgovarajmo</a>
+        <a href="#kontakt" class="btn-service" data-i18n="s3_cta" onclick="event.preventDefault();Cal.ns['discovery-poziv']('open');gtag('event','click_cta',{event_category:'CTA',event_label:'s3_retail'})">Razgovarajmo</a>
       </div>
 
     </div>
@@ -628,12 +628,12 @@
     <p class="kontakt-sub" data-i18n="contact_sub">Besplatni discovery poziv. Objasnimo kako možemo pomoći — ili kažemo da ne možemo. U oba slučaja dobivate korisne informacije.</p>
     <div class="calendly-wrap">
       <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;" data-i18n="booking_qualifier">Za FMCG brandove, distributere i retail tvrtke — HR, SI, BiH i šira regija</p>
-      <button class="btn-calendly" data-i18n="calendly_btn" onclick="Cal.ns['discovery-poziv']('open');gtag('event','generate_lead',{event_category:'CTA',event_label:'booking_btn',transport_type:'beacon'})">📅 Zakažite besplatni 30-min poziv →</button>
+      <button class="btn-calendly" data-i18n="calendly_btn" onclick="Cal.ns['discovery-poziv']('open');gtag('event','click_cta',{event_category:'CTA',event_label:'booking_btn'})">📅 Zakažite besplatni 30-min poziv →</button>
       <p class="calendly-note" data-i18n="calendly_note">Besplatno · 30 minuta · bez obaveza</p>
     </div>
     <p class="kontakt-email">
       <span data-i18n="or_email">Ili pišite direktno:</span>
-      <a href="mailto:info@elitelab.hr" onclick="gtag('event','generate_lead',{event_category:'CTA',event_label:'email_link'})">info@elitelab.hr</a>
+      <a href="mailto:info@elitelab.hr" onclick="gtag('event','click_email',{event_category:'CTA',event_label:'email_link'})">info@elitelab.hr</a>
     </p>
   </div>
 </section>
@@ -850,6 +850,32 @@
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["-reset-and-init-for-namespace", namespace])}else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 Cal("init", "discovery-poziv", {origin:"https://cal.com"});
 Cal.ns["discovery-poziv"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+// Fire generate_lead ONLY on real Cal.com booking success (not on CTA clicks)
+Cal("on", {
+  action: "bookingSuccessful",
+  callback: function (e) {
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        event_category: 'Cal.com booking',
+        event_label: 'booking_confirmed',
+        value: 1
+      });
+    }
+  }
+});
+Cal.ns["discovery-poziv"]("on", {
+  action: "bookingSuccessful",
+  callback: function (e) {
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        event_category: 'Cal.com booking',
+        event_label: 'booking_confirmed_ns',
+        value: 1
+      });
+    }
+  }
+});
 </script>
 </body>
 </html>
