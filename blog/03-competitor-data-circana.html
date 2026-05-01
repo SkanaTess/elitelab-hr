@@ -94,54 +94,54 @@
   <p><strong>Konkurent je 23% jeftiniji. Netko u vašoj tvrtki kaže: "Moramo snižavati cijenu." Krivo čita podatke. Evo zašto.</strong></p>
 
   <div class="callout">
-    <strong>TL;DR:</strong> Circana i Nielsen reporti rutinski prikazuju trend grafove, ali skrivaju 3 metrije: stvarnu pricing elasticity konkurenta, source-of-volume dekompoziciju, i promo-discount efektivnost normaliziranu na regular price erosion. Sva tri se mogu izvesti iz standardne data kocke koju već imate.
+    <strong>Ukratko:</strong> Circana i Nielsen izvještaji rutinski prikazuju trend grafove, ali skrivaju tri metrike: stvarnu cjenovnu elastičnost konkurenta, source-of-volume dekompoziciju i učinkovitost akcijskog popusta normaliziranu na eroziju redovne cijene. Sve tri mogu se izvesti iz standardne kocke podataka koju već imate.
   </div>
 
-  <h2>Metrija #1 — Stvarna pricing elasticity vs prikazana</h2>
-  <p>Standardni report pokazuje: konkurent X je akcijski na -23%, njihov volume je porastao 67%. Vaš tim zaključi: "Cjenovna elastičnost je očito visoka, moramo ići dolje."</p>
-  <p>Što report ne prikazuje:</p>
+  <h2>Metrika 1 — stvarna cjenovna elastičnost u odnosu na prikazanu</h2>
+  <p>Standardni izvještaj pokazuje: konkurent X je u akciji na -23%, njegov volumen je porastao 67%. Vaš tim zaključi: „Cjenovna elastičnost je očito visoka, moramo ići dolje."</p>
+  <p>Što izvještaj ne prikazuje:</p>
   <ul>
-    <li>Stvarni baseline volume konkurenta u tjednima bez akcije (često niži od regularnog prosjeka)</li>
-    <li>Promo lift od category leadera u istom tjednu — možda je cijela kategorija rasla zbog seasonality-ja, a ne zbog cjenovnog poteza</li>
-    <li>Halo efekt: koji udio +67% volumea došao iz susjedne kategorije (npr. uštedjeli ste na privatnoj robnoj marki)</li>
+    <li>Stvarni temeljni volumen konkurenta u tjednima bez akcije (često je niži od redovnog prosjeka)</li>
+    <li>Akcijski rast lidera kategorije u istom tjednu — možda je cijela kategorija rasla zbog sezonskog efekta, a ne zbog cjenovnog poteza</li>
+    <li>Halo efekt: koji je udio od +67% volumena došao iz susjedne kategorije (npr. potrošač je preusmjerio kupnju s privatne robne marke)</li>
   </ul>
-  <p>Pravi izračun: <strong>(Δ volume promo tjedan ÷ Δ price promo tjedan) × (1 − category lift index)</strong>. Tek ta korigirana elastičnost kaže koliko bi vam donijelo idejno snižavanje regular price.</p>
+  <p>Pravi izračun: <strong>(Δ volumen u akcijskom tjednu ÷ Δ cijena u akcijskom tjednu) × (1 − category lift index)</strong>. Tek ta korigirana elastičnost pokazuje koliko bi vam realno donijelo snižavanje redovne cijene.</p>
 
-  <h2>Metrija #2 — Source-of-volume dekompozicija</h2>
-  <p>Vaš novi SKU izlazi. Idući kvartal value share +0.4pp, market dynamics report pokazuje rast. Slavlje. Ali odakle je tih 0.4pp došlo?</p>
+  <h2>Metrika 2 — source-of-volume dekompozicija</h2>
+  <p>Vaš novi SKU izlazi na tržište. Idući kvartal value share je veći za 0,4 pp, market dynamics izvještaj pokazuje rast. Slavlje. Ali odakle je tih 0,4 pp došlo?</p>
   <ul>
-    <li><strong>Iz konkurencije</strong> (idealno, znači prava akviziracija)</li>
-    <li><strong>Iz vlastitog portfolija</strong> (kanibalizacija, neto efekt manji od pojavnog)</li>
-    <li><strong>Iz kategorijske ekspanzije</strong> (kategorija raste organski, vi samo nosite vlasništvo udjela rasta)</li>
+    <li><strong>Iz konkurencije</strong> (idealno, znači prava akvizicija)</li>
+    <li><strong>Iz vlastitog portfelja</strong> (kanibalizacija, neto efekt manji od prividnog)</li>
+    <li><strong>Iz rasta kategorije</strong> (kategorija raste organski, vi samo zauzimate svoj udio u tom rastu)</li>
   </ul>
-  <p>Bez source-of-volume razlaganja, ne znate je li vaš launch uspješan ili gubitak. U HR tržištu, gdje su FMCG kategorije zrele, kanibalizacija novih SKU iznad 40% prema core proizvodima je normalna — ali rijetko izvještavana. Tražite od Circana ili Nielsena tu dekompoziciju eksplicitno; ona postoji u panel data sloju.</p>
+  <p>Bez source-of-volume razlaganja ne znate je li vaš launch bio uspjeh ili gubitak. Na hrvatskom tržištu, gdje su FMCG kategorije zrele, kanibalizacija novih SKU-ova iznad 40% prema osnovnim proizvodima je normalna — ali se o njoj rijetko izvještava. Tražite od Circane ili Nielsena tu dekompoziciju eksplicitno; ona postoji u sloju panel podataka.</p>
 
-  <h2>Metrija #3 — Base price erosion vs promo discount</h2>
-  <p>Konkurent je stalno na akciji. Vaša brand percepcija to "izdrži", premium pozicija je netaknuta — ili tako mislite.</p>
-  <p>Stvarni signal je u <strong>regular price erosion</strong>: usporedi current quarter regular price (samo non-promo tjedni) s istim kvartalom prošle godine. Ako je vaš regular price pao 4-6% bez vaše namjere, retail buyer ga je rebalansirao prema dolje da kompenzira gubitak marže iz promo perioda. To je tihi premium drift, i obično se vidi tek kad je 2-3 kvartala kasnije pregovor već gotov.</p>
+  <h2>Metrika 3 — base price erosion u odnosu na akcijski popust</h2>
+  <p>Konkurent je stalno u akciji. Vaša percepcija brenda to „izdrži", premium pozicija je netaknuta — ili tako mislite.</p>
+  <p>Stvarni signal je u <strong>eroziji redovne cijene</strong>: usporedite redovnu cijenu u tekućem kvartalu (samo neakcijski tjedni) s istim kvartalom prošle godine. Ako je vaša redovna cijena pala 4-6% bez vaše namjere, kupac (retail buyer) ju je povukao prema dolje da kompenzira gubitak marže iz akcijskog razdoblja. To je tihi premium drift i obično se vidi tek kad je 2-3 kvartala kasnije pregovor već gotov.</p>
 
   <div class="case">
     <span class="case-tag tag-fail">CASE FAIL</span>
-    <h3>Premium beverage brand, HR, 2024</h3>
-    <p>Konkurent je išao -25% akciju 6 tjedana. Tim je odlučio matchati. Posljedica: 3 kvartala kasnije, regular shelf price -7%, promo cycle stao na nešto što je zapravo bila nova baseline. MS minimalan rast (+0.3pp), ali revenue per litre dolje 9%. Ukupan gubitak procijenjen 14% godišnje EBIT marže kategorije.</p>
-    <p><strong>Što je trebalo:</strong> izračunati korigiranu elastičnost (ispada 0.6, što znači da bi -25% promo donio samo +15% volume — ne dovoljno za matching). Strategija: ostati pri regular price, pojačati emotional/equity comm, prigrabiti shelf prostor u period kad konkurent troši na promo.</p>
+    <h3>Premium brend pića, Hrvatska, 2024.</h3>
+    <p>Konkurent je 6 tjedana držao akciju od -25%. Tim je odlučio izjednačiti cijenu. Posljedica: 3 kvartala kasnije redovna regalna cijena pala je 7%, akcijski ciklus stao je na nečemu što je zapravo bila nova baseline. Tržišni udio porastao je minimalno (+0,3 pp), ali prihod po litri pao je 9%. Ukupni gubitak procijenjen je na 14% godišnje EBIT marže kategorije.</p>
+    <p><strong>Što je trebalo:</strong> izračunati korigiranu elastičnost (ispada 0,6, što znači da bi -25% akcija donijela samo +15% volumena — nedovoljno za izjednačavanje). Strategija: ostati pri redovnoj cijeni, pojačati emocionalnu komunikaciju brenda, zauzeti dodatni prostor na polici u razdoblju kad konkurent troši na akciju.</p>
   </div>
 
   <div class="case">
     <span class="case-tag tag-win">CASE WIN</span>
-    <h3>Mid-tier dairy brand, HR, 2025</h3>
-    <p>Konkurent (lider) je smanjio promo investiciju u Q3 (interni razlozi). Source-of-volume analiza je pokazala da 60% promo lifta povijesno dolazi iz kanibalizacije njegovih vlastitih SKU-ova. Brand je bila prilika za postaviti +3% premijum na dva ključna SKU-a u Q3, jer kategorijski lider nije promo-broadcastao.</p>
-    <p><strong>Rezultat:</strong> Q3 MS +0.8pp, average shelf price +3.2%, EBIT margin kategorije +6pp YoY. Bez ijedne akcije od strane brandа.</p>
+    <h3>Mliječni brend srednje pozicije, Hrvatska, 2025.</h3>
+    <p>Konkurent (lider) smanjio je akcijska ulaganja u Q3 (interni razlozi). Source-of-volume analiza pokazala je da 60% akcijskog rasta povijesno dolazi iz kanibalizacije njegovih vlastitih SKU-ova. Brendu je to bila prilika za +3% premium na dva ključna SKU-a u Q3, jer lider kategorije nije podigao akcijsku komunikaciju.</p>
+    <p><strong>Rezultat:</strong> Q3 tržišni udio +0,8 pp, prosječna regalna cijena +3,2%, EBIT marža kategorije +6 pp na godišnjoj razini. Bez ijedne akcije od strane brenda.</p>
   </div>
 
   <h2>Što sad?</h2>
-  <p>Otvorite zadnji Circana ili Nielsen competitive report. Pitajte: jesu li ove tri metrije izložene ili samo njihovi proxyji? Ako fali — to su prilike koje konkurencija koristi protiv vas, jer one koriste te brojke iz iste data kocke.</p>
+  <p>Otvorite zadnji Circanin ili Nielsenov izvještaj o konkurenciji. Pitajte: jesu li ove tri metrike eksplicitno prikazane ili samo njihovi pokazatelji? Ako nedostaju — to su prilike koje konkurencija koristi protiv vas, jer izvlači te brojke iz iste kocke podataka.</p>
 
-  <p>Pravi competitive intelligence nije "tko je gore, tko dolje" — nego "zašto" i "što s tim". Razlika između tih dvije razine je razlika između report-a i odluke.</p>
+  <p>Prava analiza konkurencije nije „tko je gore, tko dolje" — nego „zašto" i „što s tim". Razlika između tih dviju razina je razlika između izvještaja i odluke.</p>
 
   <div class="cta-box">
-    <h3>Provjerite kako vam Circana skriva stvarne signale</h3>
-    <p>30-min discovery razgovor: koje tri metrije već imate, a koje vam fale. Konkretne preporuke gdje gledati u sljedećem reportu.</p>
+    <h3>Provjerite što vam Circana skriva</h3>
+    <p>30-minutni razgovor: koje tri metrike već imate, a koje vam nedostaju. Konkretne preporuke gdje gledati u sljedećem izvještaju.</p>
     <a href="/#kontakt" class="cta-btn" onclick="gtag('event','click_cta',{event_category:'CTA',event_label:'blog_post3'})">Rezervirajte poziv →</a>
   </div>
 </article>
