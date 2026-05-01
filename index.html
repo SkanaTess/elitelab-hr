@@ -377,6 +377,8 @@
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#usluge" data-i18n="nav_services">Usluge</a></li>
+      <li><a href="#resources" data-i18n="nav_resources">Resursi</a></li>
+      <li><a href="/blog/" data-i18n="nav_blog">Blog</a></li>
       <li><a href="#onama" data-i18n="nav_about">O nama</a></li>
       <li><a href="#kontakt" data-i18n="nav_contact">Kontakt</a></li>
     </ul>
@@ -619,6 +621,44 @@
     </div>
   </div>
 </section>
+
+<!-- RESURSI / LEAD MAGNET -->
+<section id="resources" style="background: var(--off-white); padding: 80px 24px;">
+  <div class="section-inner" style="max-width: 980px; margin: 0 auto;">
+    <div class="section-tag" data-i18n="resources_tag" style="text-align:center; color: var(--gold); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Besplatni resursi</div>
+    <h2 class="section-h2" data-i18n="resources_h2" style="text-align:center; font-size: 2rem; color: var(--navy); margin-bottom: 14px;">FMCG Category Health Check Excel</h2>
+    <p data-i18n="resources_sub" style="text-align:center; color: var(--text-mid); max-width: 640px; margin: 0 auto 36px; font-size: 1.05rem;">3-sheet Excel template — auto-popunjava distribution gap, pricing zone i top 3 akcije. Methodology kako popuniti bez Nielsen pretplate. Besplatno.</p>
+
+    <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; max-width: 880px; margin: 0 auto; align-items: center;" class="resources-grid">
+      <div>
+        <h3 style="font-size: 1.1rem; color: var(--navy); margin-bottom: 14px; font-weight: 700;">Što je unutra:</h3>
+        <ul style="list-style:none; padding:0;">
+          <li style="padding:8px 0; color: var(--text-mid); display: flex; gap: 10px;"><span style="color: var(--gold); font-weight: 700;">1.</span> Input sheet — popunjavate brand, kategoriju, distribuciju, cijene</li>
+          <li style="padding:8px 0; color: var(--text-mid); display: flex; gap: 10px;"><span style="color: var(--gold); font-weight: 700;">2.</span> Dashboard — auto-populates: MS gap, distribution efficiency, pricing zone</li>
+          <li style="padding:8px 0; color: var(--text-mid); display: flex; gap: 10px;"><span style="color: var(--gold); font-weight: 700;">3.</span> Methodology — kako prikupiti podatke bez Nielsen pretplate</li>
+          <li style="padding:8px 0; color: var(--text-mid); display: flex; gap: 10px;"><span style="color: var(--gold); font-weight: 700;">4.</span> Top 3 akcije — automatski preporučene na osnovu inputa</li>
+        </ul>
+      </div>
+      <div style="background: var(--white); padding: 32px; border-radius: 8px; border: 1px solid var(--grey); box-shadow: 0 4px 24px rgba(0,0,0,0.04);">
+        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 16px;" data-i18n="resources_form_label">Pošaljemo Excel + bonus uvid (Base Price Erosion):</p>
+        <form id="lead-magnet-form" action="https://formspree.io/f/mvzwyyrl" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+          <input type="email" name="email" required placeholder="vaš.email@firma.hr" style="padding: 14px 16px; border: 1px solid var(--grey); border-radius: 4px; font-size: 0.95rem; font-family: inherit;">
+          <input type="text" name="company" placeholder="Tvrtka (opcionalno)" style="padding: 14px 16px; border: 1px solid var(--grey); border-radius: 4px; font-size: 0.95rem; font-family: inherit;">
+          <input type="hidden" name="lead_source" value="lead-magnet-fmcg">
+          <input type="hidden" name="_subject" value="[Lead Magnet] FMCG Category Health Check download">
+          <button type="submit" class="btn-primary" style="background: var(--navy); color: var(--white); padding: 14px 28px; border-radius: 4px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: inherit;" onclick="gtag('event','generate_lead',{event_category:'lead_magnet',event_label:'fmcg_health_check'})">Pošaljite mi template →</button>
+          <p style="font-size: 0.78rem; color: var(--text-light); margin-top: 4px;" data-i18n="resources_privacy">Bez spama. Pošaljemo template + 3 follow-up emaila s konkretnim uvidima. Možete se odjaviti bilo kad.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 720px) {
+    .resources-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
 
 <!-- KONTAKT -->
 <section id="kontakt">

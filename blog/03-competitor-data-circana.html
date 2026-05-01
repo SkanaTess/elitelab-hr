@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analiza Konkurencije FMCG — Što Circana Data Izbjegava Reći | Elite Lab</title>
+  <meta name="description" content="FMCG analytics i Circana podaci — 3 metrije koje rutinski skrivaju, kako čitati pravu pricing elasticity, 2 case study (fail + win) iz HR/SI tržišta.">
+  <link rel="canonical" href="https://elitelab.hr/blog/03-competitor-data-circana.html">
+  <meta name="robots" content="index, follow">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LFP8P5KG38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LFP8P5KG38');
+    gtag('config', 'AW-18050870025');
+  </script>
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://elitelab.hr/blog/03-competitor-data-circana.html">
+  <meta property="og:title" content="Analiza Konkurencije FMCG — Što Circana Data Izbjegava Reći">
+  <meta property="og:description" content="3 metrije koje Circana rutinski skriva i kako izračunati pravi pricing elasticity.">
+  <meta property="og:image" content="https://elitelab.hr/slike/work.png">
+  <meta property="og:locale" content="hr_HR">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org", "@type": "Article",
+    "headline": "Analiza Konkurencije FMCG — Što Circana Data Izbjegava Reći",
+    "author": { "@type": "Organization", "name": "Elite Lab" },
+    "publisher": { "@type": "Organization", "name": "Elite Lab" },
+    "datePublished": "2026-05-01",
+    "mainEntityOfPage": "https://elitelab.hr/blog/03-competitor-data-circana.html",
+    "image": "https://elitelab.hr/slike/work.png",
+    "keywords": "FMCG analytics, Circana, competitive intelligence, pricing elasticity, market dynamics"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0f1e3c; --gold: #c9a84c; --white: #ffffff; --off-white: #f7f6f3; --grey: #e8e6e1; --text-dark: #1a1a1a; --text-mid: #4a4a4a; --text-light: #6b6b6b; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); line-height: 1.7; }
+    nav { padding: 20px 40px; background: var(--white); border-bottom: 1px solid var(--grey); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-size: 1.25rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    article { max-width: 740px; margin: 0 auto; padding: 60px 24px 40px; }
+    .breadcrumb { font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    h1 { font-size: 2.4rem; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.25; letter-spacing: -0.5px; }
+    .meta { font-size: 0.85rem; color: var(--text-light); margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--grey); }
+    h2 { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-top: 36px; margin-bottom: 16px; line-height: 1.3; }
+    h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-top: 28px; margin-bottom: 10px; }
+    p { margin-bottom: 18px; color: var(--text-mid); }
+    article p strong, article li strong { color: var(--text-dark); }
+    ul, ol { margin: 16px 0 22px 24px; }
+    li { margin-bottom: 8px; color: var(--text-mid); }
+    .callout { background: var(--off-white); border-left: 4px solid var(--gold); padding: 20px 24px; margin: 28px 0; border-radius: 4px; }
+    .callout strong { color: var(--navy); }
+    .case { background: var(--off-white); padding: 24px; border-radius: 8px; margin: 24px 0; }
+    .case h3 { margin-top: 0; }
+    .case-tag { display: inline-block; padding: 4px 10px; border-radius: 3px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .tag-fail { background: #fce4e4; color: #9a3a3a; }
+    .tag-win { background: #d8e9d4; color: #2e6b30; }
+    .cta-box { background: var(--navy); color: var(--white); padding: 32px 28px; border-radius: 8px; margin: 40px 0 0; text-align: center; }
+    .cta-box h3 { color: var(--white); margin-top: 0; }
+    .cta-box p { color: rgba(255,255,255,0.85); }
+    .cta-btn { display: inline-block; margin-top: 16px; padding: 14px 28px; background: var(--gold); color: var(--navy); text-decoration: none; font-weight: 700; border-radius: 4px; font-size: 0.95rem; }
+    footer { padding: 40px 24px; text-align: center; color: var(--text-light); font-size: 0.85rem; border-top: 1px solid var(--grey); margin-top: 60px; }
+    @media (max-width: 600px) { h1 { font-size: 1.8rem; } article { padding: 40px 20px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Elite<span>Lab</span></a>
+  <ul class="nav-links">
+    <li><a href="/#usluge">Usluge</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<article>
+  <div class="breadcrumb"><a href="/">Početna</a> · <a href="/blog/">Blog</a> · Competitor Data</div>
+
+  <h1>Analiza konkurencije FMCG — što Circana data izbjegava reći</h1>
+  <div class="meta">01. svibnja 2026. · 7 min čitanja · FMCG · Competitive Intelligence</div>
+
+  <p><strong>Konkurent je 23% jeftiniji. Netko u vašoj tvrtki kaže: "Moramo snižavati cijenu." Krivo čita podatke. Evo zašto.</strong></p>
+
+  <div class="callout">
+    <strong>TL;DR:</strong> Circana i Nielsen reporti rutinski prikazuju trend grafove, ali skrivaju 3 metrije: stvarnu pricing elasticity konkurenta, source-of-volume dekompoziciju, i promo-discount efektivnost normaliziranu na regular price erosion. Sva tri se mogu izvesti iz standardne data kocke koju već imate.
+  </div>
+
+  <h2>Metrija #1 — Stvarna pricing elasticity vs prikazana</h2>
+  <p>Standardni report pokazuje: konkurent X je akcijski na -23%, njihov volume je porastao 67%. Vaš tim zaključi: "Cjenovna elastičnost je očito visoka, moramo ići dolje."</p>
+  <p>Što report ne prikazuje:</p>
+  <ul>
+    <li>Stvarni baseline volume konkurenta u tjednima bez akcije (često niži od regularnog prosjeka)</li>
+    <li>Promo lift od category leadera u istom tjednu — možda je cijela kategorija rasla zbog seasonality-ja, a ne zbog cjenovnog poteza</li>
+    <li>Halo efekt: koji udio +67% volumea došao iz susjedne kategorije (npr. uštedjeli ste na privatnoj robnoj marki)</li>
+  </ul>
+  <p>Pravi izračun: <strong>(Δ volume promo tjedan ÷ Δ price promo tjedan) × (1 − category lift index)</strong>. Tek ta korigirana elastičnost kaže koliko bi vam donijelo idejno snižavanje regular price.</p>
+
+  <h2>Metrija #2 — Source-of-volume dekompozicija</h2>
+  <p>Vaš novi SKU izlazi. Idući kvartal value share +0.4pp, market dynamics report pokazuje rast. Slavlje. Ali odakle je tih 0.4pp došlo?</p>
+  <ul>
+    <li><strong>Iz konkurencije</strong> (idealno, znači prava akviziracija)</li>
+    <li><strong>Iz vlastitog portfolija</strong> (kanibalizacija, neto efekt manji od pojavnog)</li>
+    <li><strong>Iz kategorijske ekspanzije</strong> (kategorija raste organski, vi samo nosite vlasništvo udjela rasta)</li>
+  </ul>
+  <p>Bez source-of-volume razlaganja, ne znate je li vaš launch uspješan ili gubitak. U HR tržištu, gdje su FMCG kategorije zrele, kanibalizacija novih SKU iznad 40% prema core proizvodima je normalna — ali rijetko izvještavana. Tražite od Circana ili Nielsena tu dekompoziciju eksplicitno; ona postoji u panel data sloju.</p>
+
+  <h2>Metrija #3 — Base price erosion vs promo discount</h2>
+  <p>Konkurent je stalno na akciji. Vaša brand percepcija to "izdrži", premium pozicija je netaknuta — ili tako mislite.</p>
+  <p>Stvarni signal je u <strong>regular price erosion</strong>: usporedi current quarter regular price (samo non-promo tjedni) s istim kvartalom prošle godine. Ako je vaš regular price pao 4-6% bez vaše namjere, retail buyer ga je rebalansirao prema dolje da kompenzira gubitak marže iz promo perioda. To je tihi premium drift, i obično se vidi tek kad je 2-3 kvartala kasnije pregovor već gotov.</p>
+
+  <div class="case">
+    <span class="case-tag tag-fail">CASE FAIL</span>
+    <h3>Premium beverage brand, HR, 2024</h3>
+    <p>Konkurent je išao -25% akciju 6 tjedana. Tim je odlučio matchati. Posljedica: 3 kvartala kasnije, regular shelf price -7%, promo cycle stao na nešto što je zapravo bila nova baseline. MS minimalan rast (+0.3pp), ali revenue per litre dolje 9%. Ukupan gubitak procijenjen 14% godišnje EBIT marže kategorije.</p>
+    <p><strong>Što je trebalo:</strong> izračunati korigiranu elastičnost (ispada 0.6, što znači da bi -25% promo donio samo +15% volume — ne dovoljno za matching). Strategija: ostati pri regular price, pojačati emotional/equity comm, prigrabiti shelf prostor u period kad konkurent troši na promo.</p>
+  </div>
+
+  <div class="case">
+    <span class="case-tag tag-win">CASE WIN</span>
+    <h3>Mid-tier dairy brand, HR, 2025</h3>
+    <p>Konkurent (lider) je smanjio promo investiciju u Q3 (interni razlozi). Source-of-volume analiza je pokazala da 60% promo lifta povijesno dolazi iz kanibalizacije njegovih vlastitih SKU-ova. Brand je bila prilika za postaviti +3% premijum na dva ključna SKU-a u Q3, jer kategorijski lider nije promo-broadcastao.</p>
+    <p><strong>Rezultat:</strong> Q3 MS +0.8pp, average shelf price +3.2%, EBIT margin kategorije +6pp YoY. Bez ijedne akcije od strane brandа.</p>
+  </div>
+
+  <h2>Što sad?</h2>
+  <p>Otvorite zadnji Circana ili Nielsen competitive report. Pitajte: jesu li ove tri metrije izložene ili samo njihovi proxyji? Ako fali — to su prilike koje konkurencija koristi protiv vas, jer one koriste te brojke iz iste data kocke.</p>
+
+  <p>Pravi competitive intelligence nije "tko je gore, tko dolje" — nego "zašto" i "što s tim". Razlika između tih dvije razine je razlika između report-a i odluke.</p>
+
+  <div class="cta-box">
+    <h3>Provjerite kako vam Circana skriva stvarne signale</h3>
+    <p>30-min discovery razgovor: koje tri metrije već imate, a koje vam fale. Konkretne preporuke gdje gledati u sljedećem reportu.</p>
+    <a href="/#kontakt" class="cta-btn" onclick="gtag('event','click_cta',{event_category:'CTA',event_label:'blog_post3'})">Rezervirajte poziv →</a>
+  </div>
+</article>
+
+<footer>
+  © 2026 Elite Lab · info@elitelab.hr · <a href="/" style="color: var(--gold);">elitelab.hr</a>
+</footer>
+
+</body>
+</html>
