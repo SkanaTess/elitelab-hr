@@ -762,12 +762,12 @@
       </div>
       <div style="background: var(--white); padding: 32px; border-radius: 8px; border: 1px solid var(--grey); box-shadow: 0 4px 24px rgba(0,0,0,0.04);">
         <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 16px;" data-i18n="resources_form_label">Pošaljemo Excel + bonus uvid (Base Price Erosion):</p>
-        <form id="lead-magnet-form" action="https://formspree.io/f/mvzwyyrl" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+        <form id="lead-magnet-form" action="https://formspree.io/f/mvzwyyrl" method="POST" style="display: flex; flex-direction: column; gap: 12px;" onsubmit="if(this.checkValidity()){gtag('event','generate_lead',{event_category:'lead_magnet',event_label:'fmcg_health_check',value:1})}">
           <input type="email" name="email" required placeholder="vaš.email@firma.hr" style="padding: 14px 16px; border: 1px solid var(--grey); border-radius: 4px; font-size: 0.95rem; font-family: inherit;">
           <input type="text" name="company" placeholder="Tvrtka (opcionalno)" style="padding: 14px 16px; border: 1px solid var(--grey); border-radius: 4px; font-size: 0.95rem; font-family: inherit;">
           <input type="hidden" name="lead_source" value="lead-magnet-fmcg">
           <input type="hidden" name="_subject" value="[Lead Magnet] FMCG Category Health Check download">
-          <button type="submit" class="btn-primary" style="background: var(--navy); color: var(--white); padding: 14px 28px; border-radius: 4px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: inherit;" onclick="gtag('event','generate_lead',{event_category:'lead_magnet',event_label:'fmcg_health_check'})">Pošaljite mi template →</button>
+          <button type="submit" class="btn-primary" style="background: var(--navy); color: var(--white); padding: 14px 28px; border-radius: 4px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: inherit;" onclick="gtag('event','click_cta',{event_category:'CTA',event_label:'lead_magnet_btn'})">Pošaljite mi template →</button>
           <p style="font-size: 0.78rem; color: var(--text-light); margin-top: 4px;" data-i18n="resources_privacy">Bez spama. Pošaljemo template + 3 follow-up emaila s konkretnim uvidima. Možete se odjaviti bilo kad.</p>
         </form>
       </div>
