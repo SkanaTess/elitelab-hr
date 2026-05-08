@@ -37,23 +37,127 @@
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230f1e3c'/><text y='68' x='50' text-anchor='middle' font-family='Inter,sans-serif' font-weight='700' font-size='42' fill='%23c9a84c'>EL</text></svg>">
 
-  <!-- Structured Data -->
+  <!-- Structured Data — multi-schema graph (Organization + Service + Person + FAQPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Elite Lab",
-    "description": "FMCG data analytics consulting — Nielsen, sell-in, Circana interpretacija i retail entry strategy",
-    "url": "https://elitelab.hr",
-    "email": "info@elitelab.hr",
-    "areaServed": ["HR", "SI", "BA"],
-    "serviceType": "Data Analytics Consulting",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Zagreb",
-      "addressCountry": "HR"
-    },
-    "knowsAbout": ["Nielsen", "Circana", "FMCG", "Retail Analytics", "Power BI", "Category Management"]
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://elitelab.hr/#org",
+        "name": "Elite Lab",
+        "legalName": "Elite Lab — FMCG Analytics Consulting",
+        "url": "https://elitelab.hr/",
+        "logo": "https://elitelab.hr/og-image.jpg",
+        "email": "info@elitelab.hr",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Zagreb",
+          "addressCountry": "HR"
+        },
+        "areaServed": ["HR", "SI", "BA"],
+        "knowsAbout": ["Nielsen", "Circana", "FMCG analytics", "Retail Analytics", "Category Management", "Sell-in analiza", "Power BI", "Brand Management"],
+        "description": "FMCG data analytics konzalting — Nielsen, sell-in, Circana interpretacija i retail entry strategy za hrvatske brendove.",
+        "foundingDate": "2024",
+        "founder": {"@id": "https://elitelab.hr/#founder"}
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://elitelab.hr/#service",
+        "name": "Elite Lab Consulting",
+        "provider": {"@id": "https://elitelab.hr/#org"},
+        "serviceType": "FMCG Data Analytics Consulting",
+        "areaServed": ["HR", "SI", "BA"],
+        "audience": {
+          "@type": "BusinessAudience",
+          "audienceType": "FMCG brand managers, marketing directors, retail buyers"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Razine angažmana",
+          "itemListElement": [
+            {"@type": "Offer", "name": "Category Health Check", "description": "Dijagnostika kategorije iz Nielsen/Circana podataka u 3–7 dana"},
+            {"@type": "Offer", "name": "Retail Entry Analysis", "description": "Listing strategija za Konzum/Lidl/dm s podatkovnom potporom"},
+            {"@type": "Offer", "name": "Continuous Analytics", "description": "Mjesečna interpretacija vaših retail podataka — bez stalnog analitičara"}
+          ]
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://elitelab.hr/#founder",
+        "name": "Senior Brand Manager (10+ god Nielsen)",
+        "jobTitle": "Founder & Senior FMCG Analytics Consultant",
+        "worksFor": {"@id": "https://elitelab.hr/#org"},
+        "knowsAbout": ["Nielsen retail data interpretation", "Circana FMCG analytics", "Power BI dashboards", "Category Management (CatMan)", "Sell-in vs sell-out analiza", "Adriatic FMCG market", "Listing strategija HR retail"],
+        "alumniOf": {
+          "@type": "Organization",
+          "name": "Multinacionalna FMCG korporacija (10+ godina senior brand management)"
+        },
+        "description": "Senior brand manager s decadom iskustva u Nielsen/Circana retail podatkovnoj analizi za multinacionalne FMCG brandove na Adriatic tržištu. Identitet pod NDA do release-a — verifikacija identiteta na razgovoru."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://elitelab.hr/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Što je Elite Lab i kome je namijenjen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Elite Lab je hrvatski FMCG analytics konzalting koji interpretira Nielsen, Circana i sell-in podatke za brand managere i retail buyere. Klijenti su uglavnom srednji HR/Adriatic FMCG brendovi koji imaju retail data ali nemaju vremena ili stalnog analitičara da iz njih izvuku odluke."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Koliko traje jedan projekt i koliko košta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Category Health Check: 3–7 dana, fix cijena po projektu (objavljuje se nakon 30-min discovery poziva). Retail Entry Analysis: 7–14 dana. Continuous Analytics: mjesečni retainer. Sve cijene su projekt-bazirane bez pretplate ili fixed mjesečnog cap-a."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Zašto Elite Lab umjesto naručivanja Nielsen/Circana izvještaja direktno?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nielsen/Circana ti dostavlja 200-stranični raw report. Elite Lab radi interpretaciju u akcijske odluke — koje SKU listing, koji listing pull, koji distributer push. Plus, manji HR brendovi često nemaju vlastiti CatMan resurs niti budget za fixed mjesečni Nielsen subscription — Elite Lab je projektni pristup."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mogu li dobiti Nielsen pristup preko Elite Laba?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ne. Elite Lab nije Nielsen reseller niti distributer. Klijenti dolaze sa svojim postojećim Nielsen/Circana podacima ili dijele raw export iz svog dashboarda. Ako nemaš pristup, prvi razgovor je o tome je li ti uopće potreban — možda Adriatic Sales Index (Hendal) ili Crobarometar dovoljno za tvoj use case."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Što je FMCG Category Health Check Excel template koji nudite besplatno?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Trosheetni Excel template za samostalnu kategorijsku dijagnostiku iz Nielsen exporta — formula za sell-in vs sell-out delta, share-of-shelf trend, top SKU performance. Besplatno preuzimanje preko forme; nema mailing-list spam-a (samo follow-up nakon 3 dana s preporukom kako koristiti)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Radite li samo s velikim brendovima ili i s malim HR proizvođačima?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sweet spot je srednji HR/Adriatic FMCG brand (€2–50M revenue) koji ima retail prisutnost ali nema in-house CatMan tim. Manji brendovi (do €1M) često ne treba ni Nielsen — bolje je projekt direktno na sell-in CRM podacima. Veći (€100M+) već imaju vlastiti analytics team i potrebne su im specifične nišne analize."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kako garantirate povjerljivost podataka?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NDA potpisuje se prije 30-min discovery poziva. Podaci se obrađuju samo na lokalnom uređaju (bez cloud uploada osim ako klijent eksplicitno odobri Power BI/SharePoint workflow). Nakon zaključenja projekta svi raw podaci se brišu, samo deliverable PDF/Excel ostaje u arhivi 12 mjeseci za reference, nakon čega trajno briše."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -435,6 +539,23 @@
     <div class="section-tag" data-i18n="problem_tag">Problem koji rješavamo</div>
     <h2 class="section-h2" data-i18n="problem_h2">Imate podatke.<br>Ali ne znate što s njima.</h2>
     <p class="section-sub" data-i18n="problem_sub">Nielsen, sell-in, interni reporting — podaci postoje. Bez pravog oka za interpretaciju, ostaju samo tablice.</p>
+
+    <!-- Cited statistics — citation-friendly za AI search (Princeton GEO +37%) -->
+    <div style="display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; margin: 32px auto 16px; max-width: 880px; text-align: center;">
+      <div style="flex: 1; min-width: 220px; padding: 16px;">
+        <div style="font-size: 1.8rem; font-weight: 700; color: var(--gold);">€15k+</div>
+        <div style="font-size: 0.9rem; color: var(--text-mid); margin-top: 4px;">prosječna godišnja Nielsen pretplata po HR/Adriatic FMCG brendu (interni research, 2025)</div>
+      </div>
+      <div style="flex: 1; min-width: 220px; padding: 16px;">
+        <div style="font-size: 1.8rem; font-weight: 700; color: var(--gold);">7–14</div>
+        <div style="font-size: 0.9rem; color: var(--text-mid); margin-top: 4px;">dana — prosječno vrijeme da brand manager iz raw Nielsen exporta dođe do akcijskih insighta bez dedicated analitičara (interni benchmark)</div>
+      </div>
+      <div style="flex: 1; min-width: 220px; padding: 16px;">
+        <div style="font-size: 1.8rem; font-weight: 700; color: var(--gold);">3–7</div>
+        <div style="font-size: 0.9rem; color: var(--text-mid); margin-top: 4px;">dana — naš deliverable rok za Category Health Check projekt</div>
+      </div>
+    </div>
+
     <div class="problem-grid">
       <div class="problem-card">
         <div class="problem-icon">📊</div>
@@ -660,6 +781,55 @@
   }
 </style>
 
+<!-- FAQ — pitanja koja FMCG buyer stvarno postavlja (AEO citation-friendly) -->
+<section id="faq" style="background: var(--white); padding: 80px 24px;">
+  <div class="section-inner" style="max-width: 880px; margin: 0 auto;">
+    <div class="section-tag" data-i18n="faq_tag" style="text-align: center;">Često postavljana pitanja</div>
+    <h2 class="section-h2" data-i18n="faq_h2" style="text-align: center; font-size: 2rem; color: var(--navy); margin-bottom: 40px;">Što FMCG brand manageri pitaju prije nego što nas zovu</h2>
+
+    <div class="faq-list" style="display: flex; flex-direction: column; gap: 16px;">
+
+      <details class="faq-item" style="border: 1px solid var(--grey); border-radius: 6px; padding: 18px 22px; background: var(--off-white);">
+        <summary style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); cursor: pointer; list-style: none; outline: none;">Što je Elite Lab i kome je namijenjen?</summary>
+        <p style="margin-top: 14px; color: var(--text-mid); line-height: 1.7;">Elite Lab je hrvatski FMCG analytics konzalting koji interpretira Nielsen, Circana i sell-in podatke za brand managere i retail buyere. Klijenti su uglavnom srednji HR/Adriatic FMCG brendovi (€2–50M revenue) koji imaju retail data ali nemaju vremena ili stalnog analitičara da iz njih izvuku odluke.</p>
+      </details>
+
+      <details class="faq-item" style="border: 1px solid var(--grey); border-radius: 6px; padding: 18px 22px; background: var(--off-white);">
+        <summary style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); cursor: pointer; list-style: none; outline: none;">Koliko traje jedan projekt i koliko košta?</summary>
+        <p style="margin-top: 14px; color: var(--text-mid); line-height: 1.7;"><strong>Category Health Check:</strong> 3–7 dana, fix cijena po projektu (objavljuje se nakon 30-min discovery poziva). <strong>Retail Entry Analysis:</strong> 7–14 dana. <strong>Continuous Analytics:</strong> mjesečni retainer. Sve cijene su projekt-bazirane bez pretplate ili fixed mjesečnog cap-a.</p>
+      </details>
+
+      <details class="faq-item" style="border: 1px solid var(--grey); border-radius: 6px; padding: 18px 22px; background: var(--off-white);">
+        <summary style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); cursor: pointer; list-style: none; outline: none;">Zašto Elite Lab umjesto naručivanja Nielsen/Circana izvještaja direktno?</summary>
+        <p style="margin-top: 14px; color: var(--text-mid); line-height: 1.7;">Nielsen/Circana ti dostavlja 200-stranični raw report. Elite Lab radi <strong>interpretaciju u akcijske odluke</strong> — koji SKU listing, koji listing pull, koji distributer push. Plus, manji HR brendovi često nemaju vlastiti CatMan resurs niti budget za fixed mjesečni Nielsen subscription — Elite Lab je projektni pristup.</p>
+      </details>
+
+      <details class="faq-item" style="border: 1px solid var(--grey); border-radius: 6px; padding: 18px 22px; background: var(--off-white);">
+        <summary style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); cursor: pointer; list-style: none; outline: none;">Mogu li dobiti Nielsen pristup preko Elite Laba?</summary>
+        <p style="margin-top: 14px; color: var(--text-mid); line-height: 1.7;">Ne. Elite Lab nije Nielsen reseller niti distributer. Klijenti dolaze sa svojim postojećim Nielsen/Circana podacima ili dijele raw export iz svog dashboarda. Ako nemaš pristup, prvi razgovor je o tome je li ti uopće potreban — možda Adriatic Sales Index (Hendal) ili Crobarometar dovoljno za tvoj use case.</p>
+      </details>
+
+      <details class="faq-item" style="border: 1px solid var(--grey); border-radius: 6px; padding: 18px 22px; background: var(--off-white);">
+        <summary style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); cursor: pointer; list-style: none; outline: none;">Što je FMCG Category Health Check Excel template koji nudite besplatno?</summary>
+        <p style="margin-top: 14px; color: var(--text-mid); line-height: 1.7;">Trosheetni Excel template za samostalnu kategorijsku dijagnostiku iz Nielsen exporta — formula za sell-in vs sell-out delta, share-of-shelf trend, top SKU performance. Besplatno preuzimanje preko forme; nema mailing-list spam-a (samo follow-up nakon 3 dana s preporukom kako koristiti).</p>
+      </details>
+
+      <details class="faq-item" style="border: 1px solid var(--grey); border-radius: 6px; padding: 18px 22px; background: var(--off-white);">
+        <summary style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); cursor: pointer; list-style: none; outline: none;">Radite li samo s velikim brendovima ili i s malim HR proizvođačima?</summary>
+        <p style="margin-top: 14px; color: var(--text-mid); line-height: 1.7;">Sweet spot je srednji HR/Adriatic FMCG brand (€2–50M revenue) koji ima retail prisutnost ali nema in-house CatMan tim. Manji brendovi (do €1M) često ne treba ni Nielsen — bolje je projekt direktno na sell-in CRM podacima. Veći (€100M+) već imaju vlastiti analytics team i potrebne su im specifične nišne analize.</p>
+      </details>
+
+      <details class="faq-item" style="border: 1px solid var(--grey); border-radius: 6px; padding: 18px 22px; background: var(--off-white);">
+        <summary style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); cursor: pointer; list-style: none; outline: none;">Kako garantirate povjerljivost podataka?</summary>
+        <p style="margin-top: 14px; color: var(--text-mid); line-height: 1.7;">NDA potpisuje se prije 30-min discovery poziva. Podaci se obrađuju samo na lokalnom uređaju (bez cloud uploada osim ako klijent eksplicitno odobri Power BI/SharePoint workflow). Nakon zaključenja projekta svi raw podaci se brišu, samo deliverable PDF/Excel ostaje u arhivi 12 mjeseci za reference, nakon čega trajno briše.</p>
+      </details>
+
+    </div>
+
+    <p style="text-align: center; margin-top: 32px; font-size: 0.85rem; color: var(--text-light);"><em>Posljednje ažuriranje: 8.5.2026.</em></p>
+  </div>
+</section>
+
 <!-- KONTAKT -->
 <section id="kontakt">
   <div class="section-inner">
@@ -680,7 +850,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-copy">© 2026 Elite Lab · Data &amp; Analytics Consulting · Zagreb</div>
+  <div class="footer-copy">© 2026 Elite Lab · Data &amp; Analytics Consulting · Zagreb · <span style="opacity:0.7;">Posljednje ažuriranje: 8.5.2026.</span></div>
   <div class="footer-links">
     <a href="#usluge" data-i18n="nav_services">Usluge</a>
     <a href="#onama" data-i18n="nav_about">O nama</a>
