@@ -1,0 +1,22 @@
+# Elite Lab
+> Hrvatski FMCG data analytics konzalting — interpretacija Nielsen, Circana i sell-in podataka u konkretne poslovne odluke za brand managere i retail buyere. (Nije football/EFL — zaseban projekt.)
+
+Elite Lab pretvara retail i tržišne podatke u akcijske odluke u 3–7 radnih dana, bez stalnog analitičara i bez pretplate — cijena je projekt-bazirana. Klijenti su uglavnom srednji HR/Adriatic FMCG brendovi (~€2–50M prihoda) koji imaju Nielsen/Circana ili sell-in podatke, ali nemaju vremena ni resursa da iz njih izvuku odluke. Pokriva HR, SI, BiH i širu regiju. Kontakt: info@elitelab.hr.
+
+## Key pages
+- [Početna](https://elitelab.hr/): problem, usluge, proces, osnivači, FAQ, kontakt
+- [Usluge](https://elitelab.hr/#usluge): tri razine angažmana — Category Health Check, Analiza podataka, Retail Entry Strategy
+- [Besplatni resursi](https://elitelab.hr/#resources): FMCG Category Health Check Excel template (3 sheeta) za samostalnu kategorijsku dijagnostiku
+- [O nama](https://elitelab.hr/#onama): dva osnivača — senior FMCG brand manager + data engineer
+- [Kontakt](https://elitelab.hr/#kontakt): besplatni 30-min discovery poziv
+
+## Key facts
+- Usluga: FMCG/Nielsen data analytics konzalting (Nielsen, Circana, sell-in/sell-out interpretacija, retail entry strategija)
+- Tri razine: Category Health Check (od €500, 3–7 dana, PDF + prezentacija) · Analiza podataka (od €400/kvartal ili €150/sat) · Retail Entry Strategy (od €800, uklj. buyer pitch dokument)
+- Rok deliverablea: 3–7 radnih dana ovisno o složenosti; 2 tjedna follow-up podrške
+- Ciljani klijent: srednji HR/Adriatic FMCG brand (~€2–50M prihoda) bez in-house CatMan tima
+- Nije Nielsen reseller ni distributer — klijent dolazi s vlastitim podacima
+- Povjerljivost: NDA prije discovery poziva; podaci se obrađuju lokalno
+- Tržišta: HR, SI, BiH i regija · jezik: hrvatski (EN dostupan)
+- Tim: dva osnivača (FMCG brand & market analytics + data engineering / Power BI / ETL); 20+ kombiniranih godina iskustva, 40+ analiziranih kategorija
+- Kontakt: info@elitelab.hr · LinkedIn: elite-lab-analytics
